@@ -6,9 +6,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 * { margin:0; padding:0; box-sizing:border-box; }
-:root { --blue:#0052F2; --navy:#001A4F; --ink:#0b0b12; --muted:#5b6172; --line:#e7e9f2; --wash:#f6f7fb; --washb:#eef2fe; }
-body { font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif; background:#dfe2ea; min-height:100vh; display:flex; flex-direction:column; align-items:center; padding:80px 0 64px; color:var(--ink); }
-.page { width:860px; background:#fff; box-shadow:0 12px 50px rgba(10,15,40,0.22); position:relative; }
+:root { --blue:#0052F2; --navy:#001A4F; --ink:#0b0b12; --muted:#5b6172; --line:#e7e9f2; --wash:#f6f7fb; --cvs:#cc0000; }
+body { font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif; background:#dfe2ea; min-height:100vh; display:flex; flex-direction:column; align-items:center; padding:78px 0 50px; color:var(--ink); }
+/* A4 page: 210 × 297mm ≈ 794 × 1123px @96dpi */
+.page { width:794px; min-height:1123px; background:#fff; box-shadow:0 12px 50px rgba(10,15,40,0.22); position:relative; display:flex; flex-direction:column; }
 input[type=file] { display:none; }
 
 /* toolbar */
@@ -17,121 +18,105 @@ input[type=file] { display:none; }
 .toolbar-item:hover { background:rgba(255,255,255,0.12); }
 .toolbar-sep { width:1px; background:rgba(255,255,255,0.15); height:26px; }
 
-[contenteditable] { outline:none; }
 [contenteditable]:hover { background:rgba(0,82,242,0.06); border-radius:3px; }
-[contenteditable]:focus { background:rgba(0,82,242,0.09); border-radius:3px; box-shadow:0 0 0 2px rgba(0,82,242,0.35); }
+[contenteditable]:focus { background:rgba(0,82,242,0.09); border-radius:3px; box-shadow:0 0 0 2px rgba(0,82,242,0.35); outline:none; }
 
-.eyebrow { font-size:10px; font-weight:800; letter-spacing:1.8px; text-transform:uppercase; color:var(--blue); margin-bottom:12px; }
+.eyebrow { font-size:9.5px; font-weight:800; letter-spacing:1.7px; text-transform:uppercase; color:var(--blue); margin-bottom:10px; }
 
 /* header */
-.header { background:radial-gradient(120% 140% at 88% -20%, #1a2fb0 0%, rgba(26,47,176,0) 55%), linear-gradient(135deg,#0a0a12 0%,#0d1024 100%); padding:28px 46px 40px; position:relative; overflow:hidden; }
-.shapes-wrap { position:absolute; top:0; right:0; width:380px; height:240px; z-index:1; pointer-events:none; }
+.header { background:radial-gradient(120% 150% at 88% -20%, #1a2fb0 0%, rgba(26,47,176,0) 55%), linear-gradient(135deg,#0a0a12 0%,#0d1024 100%); padding:22px 40px 20px; position:relative; overflow:hidden; }
+.shapes-wrap { position:absolute; top:0; right:0; width:340px; height:200px; z-index:1; pointer-events:none; }
 .shapes-wrap svg { width:100%; height:100%; }
-.logo-bar { display:flex; align-items:center; margin-bottom:24px; position:relative; z-index:3; }
+.logo-bar { display:flex; align-items:center; margin-bottom:20px; position:relative; z-index:3; }
 .logo-upload-wrap { position:relative; display:flex; align-items:center; cursor:pointer; }
 .logo-upload-wrap:hover .upload-overlay { opacity:1; }
 .upload-overlay { position:absolute; inset:-5px; background:rgba(92,107,192,0.25); border:1.5px dashed rgba(255,255,255,0.5); border-radius:6px; display:flex; align-items:center; justify-content:center; opacity:0; transition:opacity .15s; pointer-events:none; }
-.upload-overlay span { color:#fff; font-size:10px; font-weight:600; background:rgba(0,0,0,0.5); padding:3px 6px; border-radius:4px; white-space:nowrap; }
-.amp-logo-img { height:26px; width:auto; display:block; }
-.logo-divider { color:rgba(255,255,255,0.4); font-size:20px; font-weight:300; margin:0 13px; }
-.vertical-label { color:#fff; font-size:15px; font-weight:700; letter-spacing:0.3px; }
-.header h1 { color:#fff; font-size:35px; font-weight:900; line-height:1.12; letter-spacing:-0.9px; max-width:600px; position:relative; z-index:3; }
-.header .sub { color:rgba(255,255,255,0.66); font-size:13px; line-height:1.6; max-width:540px; margin-top:12px; position:relative; z-index:3; }
+.upload-overlay span { color:#fff; font-size:9px; font-weight:600; background:rgba(0,0,0,0.55); padding:2px 5px; border-radius:4px; white-space:nowrap; }
+.amp-logo-img { height:25px; width:auto; display:block; }
+.logo-divider { color:rgba(255,255,255,0.4); font-size:19px; font-weight:300; margin:0 12px; }
+.cvs-chip { background:#fff; border-radius:6px; padding:5px 9px; display:flex; align-items:center; }
+.cvs-logo-img { height:22px; width:auto; display:block; }
+.header h1 { color:#fff; font-size:29px; font-weight:900; line-height:1.13; letter-spacing:-0.8px; max-width:560px; position:relative; z-index:3; }
+.header .sub { color:rgba(255,255,255,0.66); font-size:12.5px; line-height:1.55; max-width:520px; margin-top:10px; position:relative; z-index:3; }
 
-/* generic section */
-.section { padding:26px 46px; border-bottom:1px solid var(--line); }
-.section.tight { padding-top:22px; padding-bottom:22px; }
-.lead { font-size:15px; font-weight:700; color:var(--ink); line-height:1.5; }
+.body { padding:16px 40px; flex:1; }
+.block { margin-bottom:12px; }
 
 /* mapping table */
-.map-card { border:1px solid var(--line); border-radius:12px; overflow:hidden; }
+.map-card { border:1px solid var(--line); border-radius:11px; overflow:hidden; }
 table.map { width:100%; border-collapse:collapse; }
-table.map th, table.map td { text-align:left; padding:7px 16px; font-size:11.5px; vertical-align:top; line-height:1.4; }
-table.map thead th { font-size:9.5px; font-weight:800; letter-spacing:0.8px; text-transform:uppercase; color:#8990a6; background:var(--wash); border-bottom:1px solid var(--line); }
+table.map th, table.map td { text-align:left; padding:5.5px 14px; font-size:11px; vertical-align:top; line-height:1.35; }
+table.map thead th { font-size:9px; font-weight:800; letter-spacing:0.7px; text-transform:uppercase; color:#8990a6; background:var(--wash); border-bottom:1px solid var(--line); }
 table.map tbody tr:nth-child(even) { background:#fafbfe; }
 table.map tbody td { border-bottom:1px solid #f0f1f7; }
 table.map tbody tr:last-child td { border-bottom:none; }
-.c-adobe { color:#333; font-weight:600; width:25%; }
-.c-amp { color:var(--blue); font-weight:700; width:27%; }
+.c-adobe { color:#333; font-weight:600; width:24%; }
+.c-amp { color:var(--blue); font-weight:700; width:28%; }
 .c-note { color:var(--muted); width:48%; }
 
-/* viz row */
-.viz-grid { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
-.viz { position:relative; border:1px solid var(--line); border-radius:12px; overflow:hidden; background:#fff; cursor:pointer; box-shadow:0 2px 10px rgba(10,15,40,0.04); }
-.viz:hover .viz-overlay { opacity:1; }
-.viz-cap { font-size:10.5px; font-weight:700; color:#6a7086; padding:9px 14px 0; }
-.viz-cap b { color:var(--ink); }
-.viz-body { padding:12px 14px 16px; }
-.viz-overlay { position:absolute; inset:0; background:rgba(0,82,242,0.10); border:1.5px dashed rgba(0,82,242,0.45); border-radius:12px; display:flex; align-items:center; justify-content:center; opacity:0; transition:opacity .15s; }
-.viz-overlay span { font-size:11px; font-weight:700; color:#0033b0; background:#fff; padding:5px 12px; border-radius:20px; box-shadow:0 2px 8px rgba(0,0,0,0.12); }
-.viz-img { width:100%; display:none; border-radius:8px; }
+/* lower two-column */
+.two-col { display:grid; grid-template-columns:1.05fr 0.95fr; gap:22px; }
 
-/* mock: data table */
+/* viz (editable in place) */
+.viz { border:1px solid var(--line); border-radius:11px; background:#fff; box-shadow:0 2px 10px rgba(10,15,40,0.04); padding:10px 13px 11px; margin-bottom:11px; }
+.viz-cap { font-size:10px; font-weight:700; color:#6a7086; margin-bottom:8px; }
+.viz-cap b { color:var(--ink); }
+
 .mtbl { width:100%; border-collapse:collapse; font-size:10px; }
-.mtbl th { text-align:left; color:#9198ad; font-weight:700; padding:4px 6px; border-bottom:1px solid #eef0f6; text-transform:uppercase; letter-spacing:.4px; font-size:8.5px; }
-.mtbl td { padding:5px 6px; border-bottom:1px solid #f4f5fa; color:#3a4058; }
+.mtbl th { text-align:left; color:#9198ad; font-weight:700; padding:3px 5px; border-bottom:1px solid #eef0f6; text-transform:uppercase; letter-spacing:.4px; font-size:8px; }
+.mtbl td { padding:4px 5px; border-bottom:1px solid #f4f5fa; color:#3a4058; }
+.mtbl tr:last-child td { border-bottom:none; }
 .mtbl .seg { font-weight:600; color:#22263a; }
+.barbg { background:#eef1fb; border-radius:3px; height:7px; width:52px; display:inline-block; overflow:hidden; vertical-align:middle; margin-right:6px; }
 .bar { height:7px; border-radius:3px; background:var(--blue); display:inline-block; vertical-align:middle; }
-.barbg { background:#eef1fb; border-radius:3px; height:7px; width:66px; display:inline-block; overflow:hidden; vertical-align:middle; margin-right:6px; }
 .pct { color:var(--blue); font-weight:700; }
 
-/* mock: segmentation filter */
-.filt-row { display:flex; align-items:center; gap:6px; margin-bottom:7px; font-size:10px; flex-wrap:wrap; }
-.op { display:flex; align-items:center; gap:6px; }
+.filt-row { display:flex; align-items:center; gap:6px; margin-bottom:6px; font-size:10px; flex-wrap:wrap; }
 .chip { padding:3px 8px; border-radius:6px; font-weight:700; font-size:9.5px; }
 .chip.k { background:#eef2fe; color:#0033b0; }
 .chip.o { background:#eafaf0; color:#137a3e; }
 .chip.v { background:#f4f5fa; color:#3a4058; border:1px solid #e7e9f2; }
 .chip.re { background:#fdefe8; color:#b4530f; font-family:ui-monospace,Menlo,monospace; }
-.tag-inc { font-size:8.5px; font-weight:800; letter-spacing:.4px; text-transform:uppercase; color:#137a3e; }
-.tag-exc { font-size:8.5px; font-weight:800; letter-spacing:.4px; text-transform:uppercase; color:#b4530f; }
+.chip.d { background:#f3ecff; color:#5b21b6; }
+.tag-inc { font-size:8px; font-weight:800; letter-spacing:.4px; text-transform:uppercase; color:#137a3e; }
+.tag-exc { font-size:8px; font-weight:800; letter-spacing:.4px; text-transform:uppercase; color:#b4530f; }
 
 /* limits tiles */
-.tiles { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
-.tile { background:var(--wash); border:1px solid var(--line); border-radius:10px; padding:12px 14px; }
-.tile-num { font-size:22px; font-weight:900; color:var(--blue); letter-spacing:-0.5px; line-height:1; }
-.tile-label { font-size:10.5px; color:var(--muted); margin-top:5px; line-height:1.35; }
-.limit-note { font-size:11px; color:var(--muted); margin-top:12px; line-height:1.5; }
+.tiles { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+.tile { background:var(--wash); border:1px solid var(--line); border-radius:9px; padding:10px 12px; }
+.tile-num { font-size:19px; font-weight:900; color:var(--blue); letter-spacing:-0.5px; line-height:1; }
+.tile-label { font-size:9.5px; color:var(--muted); margin-top:4px; line-height:1.3; }
+.limit-note { font-size:10px; color:var(--muted); margin-top:11px; line-height:1.5; }
 .limit-note b { color:var(--ink); }
 
-/* concept columns */
-.features-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:24px; }
-.feature { display:flex; gap:11px; align-items:flex-start; }
-.feature-icon-wrap { flex-shrink:0; width:30px; height:30px; display:flex; align-items:center; justify-content:center; margin-top:1px; }
-.feature-icon-wrap svg { width:25px; height:25px; }
-.feature-title { font-size:12.5px; font-weight:800; color:var(--ink); line-height:1.3; margin-bottom:6px; }
-.feature-desc { font-size:11px; color:var(--muted); line-height:1.5; }
-
 /* footer */
-.footer { padding:13px 46px; display:flex; justify-content:space-between; align-items:center; background:#fff; }
-.footer-copy { font-size:10.5px; color:#b6bacb; }
+.footer { padding:12px 40px; display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--line); background:#fff; }
+.footer-copy { font-size:10px; color:#b6bacb; }
 .ae-block { text-align:right; }
-.ae-name { font-size:12.5px; font-weight:700; color:#222; }
-.ae-title { font-size:11px; color:#777; margin-top:1px; }
-.ae-contact { font-size:11px; color:var(--blue); margin-top:2px; }
+.ae-name { font-size:12px; font-weight:700; color:#222; }
+.ae-title { font-size:10.5px; color:#777; margin-top:1px; }
+.ae-contact { font-size:10.5px; color:var(--blue); margin-top:1px; }
 
 @media print {
   * { -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; }
-  @page { size:letter portrait; margin:0; }
+  @page { size:A4 portrait; margin:0; }
   html, body { background:#fff !important; padding:0 !important; margin:0 !important; display:block !important; }
-  .page { width:860px !important; box-shadow:none !important; margin:0 auto !important; }
+  .page { box-shadow:none !important; margin:0 auto !important; }
   .toolbar, input[type=file] { display:none !important; }
-  [contenteditable] { background:none !important; box-shadow:none !important; }
-  .upload-overlay, .viz-overlay { display:none !important; }
-  .section, .viz { break-inside:avoid; }
+  [contenteditable]:hover, [contenteditable]:focus { background:none !important; box-shadow:none !important; }
+  .upload-overlay { display:none !important; }
 }
 </style>
 </head>
 <body>
 
 <input type="file" id="upload-amp-logo" accept="image/*">
-<input type="file" id="upload-viz-0" accept="image/*">
-<input type="file" id="upload-viz-1" accept="image/*">
+<input type="file" id="upload-cvs-logo" accept="image/*">
 
 <div class="toolbar">
   <span class="toolbar-item">✏️ Click any text to edit</span>
   <div class="toolbar-sep"></div>
-  <span class="toolbar-item">🖼️ Hover images to replace</span>
+  <span class="toolbar-item">🖼️ Hover logos to replace</span>
   <div class="toolbar-sep"></div>
   <button class="toolbar-item" id="save-status" onclick="saveEdits()">💾 Save edits</button>
   <div class="toolbar-sep"></div>
@@ -144,10 +129,10 @@ table.map tbody tr:last-child td { border-bottom:none; }
 
   <div class="header">
     <div class="shapes-wrap">
-      <svg viewBox="0 0 380 240" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="190" y="-52" width="150" height="150" rx="22" fill="url(#s1)" opacity="0.95" transform="rotate(18 190 -52)"/>
-        <rect x="266" y="24" width="126" height="126" rx="18" fill="url(#s2)" opacity="0.8" transform="rotate(-8 266 24)"/>
-        <rect x="132" y="14" width="86" height="86" rx="14" fill="url(#s3)" opacity="0.6" transform="rotate(30 132 14)"/>
+      <svg viewBox="0 0 340 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="170" y="-46" width="132" height="132" rx="20" fill="url(#s1)" opacity="0.95" transform="rotate(18 170 -46)"/>
+        <rect x="238" y="22" width="112" height="112" rx="16" fill="url(#s2)" opacity="0.8" transform="rotate(-8 238 22)"/>
+        <rect x="118" y="12" width="76" height="76" rx="12" fill="url(#s3)" opacity="0.6" transform="rotate(30 118 12)"/>
         <defs>
           <linearGradient id="s1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#4083FF"/><stop offset="100%" stop-color="#0033C4"/></linearGradient>
           <linearGradient id="s2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#6980FF"/><stop offset="100%" stop-color="#0052F2"/></linearGradient>
@@ -158,192 +143,160 @@ table.map tbody tr:last-child td { border-bottom:none; }
     <div class="logo-bar">
       <div class="logo-upload-wrap" onclick="document.getElementById('upload-amp-logo').click()" title="Click to replace Amplitude logo">
         <div id="amp-logo-display"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MDAwIDEwMDAiIHdpZHRoPSI1MDAwIiBoZWlnaHQ9IjEwMDAiPgoJPHN0eWxlPgoJCXRzcGFuIHsgd2hpdGUtc3BhY2U6cHJlIH0KCQkuc2hwMCB7IGZpbGw6IHdoaXRlIH0gCgk8L3N0eWxlPgoJPHBhdGggaWQ9IlBhdGggMSIgY2xhc3M9InNocDAiIGQ9Ik00MzguOTUgMjI4LjY0QzQzNi4xOSAyMjUgNDMzLjA1IDIyMy4wOSA0MjkuNTYgMjIzLjA5QzQyNi42OCAyMjMuMDkgNDI0LjA1IDIyNC4zOCA0MjIuMzYgMjI1LjQ2QzM5NS44NCAyNDYuMjkgMzU5LjU1IDMzNC41MyAzMjkuODEgNDUwLjhMMzU2LjE0IDQ1MS4xQzQwOC4xMyA0NTEuNjkgNDYxLjgyIDQ1Mi4zIDUxNC44OSA0NTMuMTJDNTAwLjkgMzk5Ljg2IDQ4Ny42OCAzNTQuMjEgNDc1LjU2IDMxNy4zNkM0NTcuODUgMjYzLjUgNDQ1Ljg4IDIzOS4zOSA0MzguOTUgMjI4LjY0WiIgLz4KCTxwYXRoIGlkPSJQYXRoIDIiIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xhc3M9InNocDAiIGQ9Ik05OTUuOTkgNTAyLjQ3Qzk5NS45OSA3NzcuNSA3NzMuMDMgMTAwMC40NyA0OTcuOTkgMTAwMC40N0MyMjIuOTUgMTAwMC40NyAtMC4wMSA3NzcuNSAtMC4wMSA1MDIuNDdDLTAuMDEgMjI3LjQzIDIyMi45NSA0LjQ3IDQ5Ny45OSA0LjQ3Qzc3My4wMyA0LjQ3IDk5NS45OSAyMjcuNDMgOTk1Ljk5IDUwMi40N1pNODY1LjgxIDQ5MS4wOEM4NjUuODEgNDc4LjI5IDg1Ni44IDQ2Ny42MyA4NDQuNjYgNDY1LjJDODQ0LjU5IDQ2NS4xOSA4NDQuNTIgNDY1LjE3IDg0NC40NCA0NjUuMTVDODQ0LjMgNDY1LjEzIDg0NC4xNiA0NjUuMDggODQ0LjAyIDQ2NS4wNkw4NDMuNTMgNDY1LjAxQzg0Mi4yNCA0NjQuOCA4NDAuOTMgNDY0LjY3IDgzOS41OSA0NjQuNjVMODM2LjEgNDY0LjMyQzc1Mi42OSA0NTguMzUgNjY2Ljg4IDQ1NiA1ODYuMzggNDU0LjM5TDU4Ni4yMiA0NTMuOEM1NDcuMDQgMzA2Ljg0IDQ5OC4xIDE1Ni41OSA0MzIuMTEgMTU2LjU5QzM3MC42MiAxNTYuODcgMzE1LjE5IDI1NS41OSAyNjcuMzIgNDUwLjA3QzIzMy41IDQ0OS42NCAyMDIuNjcgNDQ5LjE3IDE3My42IDQ0OC42N0MxNzEuOTUgNDQ4LjY0IDE3MC40NyA0NDguNjMgMTY5LjE1IDQ0OC42M0MxNjIuOTUgNDQ4LjYzIDE1OS45MiA0NDguODkgMTU4LjQyIDQ0OS4wOUMxNDIuMDUgNDUxLjk5IDEzMC4xNyA0NjYuMjcgMTMwLjE3IDQ4My4wNkMxMzAuMTcgNTAwLjE4IDE0Mi45NSA1MTQuODYgMTU5LjYgNTE3LjI2TDE1OS45NCA1MTcuNjFMMjUxLjY0IDUxNy42MUMyNDMuMTMgNTU2LjUyIDIzNS42NyA1OTUgMjI5LjQ0IDYzMi4wN0wyMjYuNzEgNjQ4LjM5TDIyNi42OCA2NDkuMTdDMjI2Ljc0IDY2MS43NiAyMzcuMDMgNjcyIDI0OS42MSA2NzJDMjU3LjU5IDY3MiAyNjQuODIgNjY3Ljg0IDI2OC45NSA2NjEuMzZMMjY5LjYgNjYxLjg4TDMxNC42OCA1MTcuNjFMNTMxLjgyIDUxNy42MUM1NDguNDEgNTgwLjI5IDU2NS42MiA2NDUuMDEgNTg4LjM2IDcwNS43NUM2MDAuNTIgNzM4LjIzIDYyOC45OSA4MTQuMyA2NzYuNTcgODE0LjY4TDY3Ny4xMSA4MTQuNjhDNzUwLjc1IDgxNC42OCA3NzkuNDUgNjk1LjczIDc5OC40NiA2MTYuOTlDODAyLjU0IDYwMC4wNSA4MDYuMDcgNTg1LjQyIDgwOS40IDU3NC42N0w4MTAuNzMgNTcwLjIzTDgxMC43MiA1NzAuMjNDODExLjA0IDU2OS4xOSA4MTEuMjEgNTY4LjA5IDgxMS4yMSA1NjYuOTRDODExLjIxIDU2MC42NCA4MDYuMSA1NTUuNTMgNzk5LjggNTU1LjUzQzc5NC45MSA1NTUuNTMgNzkwLjc1IDU1OC42IDc4OS4xMiA1NjIuOTJMNzg5LjEgNTYyLjkxTDc4Ny41IDU2Ny4zM0M3ODEuMjUgNTg0LjYzIDc3NS40NyA2MDAuOTkgNzcwLjM1IDYxNS40OUw3NjkuOTYgNjE2LjU4QzczOC4wOSA3MDYuODUgNzIzLjU0IDc0OC4wNSA2OTUuMDQgNzQ4LjA2TDY5NC4zNCA3NDguMDVMNjkzLjk0IDc0OC4xMUw2OTMuMjMgNzQ4LjA5QzY1Ni43NSA3NDguMDkgNjIyLjQgNTk5Ljc5IDYwOS40NyA1NDMuOTdDNjA3LjIzIDUzNC4zIDYwNS4xOCA1MjUuNDIgNjAzLjI5IDUxNy42MUw4MzkuMTggNTE3LjYxQzg0My42MSA1MTcuNjEgODQ3Ljc4IDUxNi41IDg1MS40NCA1MTQuNThDODUxLjQ3IDUxNC41NyA4NTEuNDkgNTE0LjU2IDg1MS41MSA1MTQuNTVDODUxLjg4IDUxNC4zNiA4NTIuMjMgNTE0LjE0IDg1Mi41OSA1MTMuOTNDODUyLjk5IDUxMy43IDg1My4zOCA1MTMuNDcgODUzLjc2IDUxMy4yMkM4NTMuOTUgNTEzLjEgODU0LjEzIDUxMi45NyA4NTQuMzEgNTEyLjg0Qzg1NC44OCA1MTIuNDUgODU1LjQzIDUxMi4wNCA4NTUuOTcgNTExLjZDODU2LjAxIDUxMS41NyA4NTYuMDQgNTExLjU0IDg1Ni4wOCA1MTEuNTFDODYyLjAyIDUwNi42NCA4NjUuODEgNDk5LjI2IDg2NS44MSA0OTEuMDhaTTEyNzIuMzUgNjI3LjA3TDEyMzIuODcgNzI0LjY0TDExMTguMTggNzI0LjY0TDEzMzYuNCAyMTUuMjFMMTQzNy42OSAyMTUuMjFMMTY1NS4xNiA3MjQuNjRMMTU0MS4yMSA3MjQuNjRMMTUwMS43NCA2MjcuMDdMMTI3Mi4zNSA2MjcuMDdaTTEzODYuMyAzNDQuMDVMMTMxMS44MiA1MjkuNUwxNDYyLjI3IDUyOS41TDEzODYuMyAzNDQuMDVaTTIzMDEuNjMgNTI4Ljc2TDIzMDEuNjMgNzI0LjY0TDIxOTguMTEgNzI0LjY0TDIxOTguMTEgNTM3LjdDMjE5OC4xMSA0ODEuMDkgMjE3MC41NSA0NTAuNTYgMjEyMi4xNCA0NTAuNTZDMjEwMC41NCA0NTAuNTYgMjA3Ni43MSA0NjAuMjQgMjA1NS4xMSA0OTAuMDNDMjA1Ni42IDUwMi42OSAyMDU4LjA5IDUxNS4zNSAyMDU4LjA5IDUyOC43NkwyMDU4LjA5IDcyNC42NEwxOTU0LjU2IDcyNC42NEwxOTU0LjU2IDUzNy43QzE5NTQuNTYgNDgxLjA5IDE5MjcuMDEgNDUwLjU2IDE4NzcuODUgNDUwLjU2QzE4NTcuNzQgNDUwLjU2IDE4MzUuNCA0NjIuNDcgMTgxNC41NSA0OTAuNzhMMTgxNC41NSA3MjQuNjRMMTcxMS4wMiA3MjQuNjRMMTcxMS4wMiAzNjcuODlMMTgxNC41NSAzNjcuODlMMTgxNC41NSAzODkuNDlDMTgzNi44OSAzNjguNjMgMTg2MC43MiAzNTYuNzIgMTkwMi40MyAzNTYuNzJDMTk0Ny44NiAzNTYuNzIgMTk4OC4wOCAzNzQuNTkgMjAxNi4zOCA0MDcuMzZDMjA1NC4zNyAzNzIuMzYgMjA5MC4xMSAzNTYuNzIgMjE0NS45NyAzNTYuNzJDMjIzMy4xMSAzNTYuNzIgMjMwMS42MyA0MjQuNDkgMjMwMS42MyA1MjguNzZaTTI3NTYuNjkgNTQ2LjYzQzI3NTYuNjkgNjUwLjE2IDI2NzcuNzUgNzMyLjA4IDI1NzkuNDMgNzMyLjA4QzI1MzkuMjIgNzMyLjA4IDI1MDUuNyA3MjEuNjYgMjQ3OC4xNCA3MDMuNzhMMjQ3OC4xNCA4OTYuNjhMMjM3NC42MiA4OTYuNjhMMjM3NC42MiAzNjcuODlMMjQ3OC4xNCAzNjcuODlMMjQ3OC4xNCAzODguNzRDMjUwNS43IDM3MC44NiAyNTM5LjIyIDM2MC40NCAyNTc5LjQzIDM2MC40NEMyNjc3Ljc1IDM2MC40NCAyNzU2LjY5IDQ0MS42MiAyNzU2LjY5IDU0Ni42M1pNMjY1NC42NiA1NDYuNjNDMjY1NC42NiA0OTMuNzUgMjYxNS45MyA0NDcuNTggMjU2Mi4zIDQ0Ny41OEMyNTMxLjc3IDQ0Ny41OCAyNTAxLjIzIDQ1OCAyNDc4LjE0IDQ4OS4yOUwyNDc4LjE0IDYwMy4yNEMyNTAxLjIzIDYzMy43NyAyNTMxLjc3IDY0NC4yIDI1NjIuMyA2NDQuMkMyNjE1LjkzIDY0NC4yIDI2NTQuNjYgNTk4Ljc3IDI2NTQuNjYgNTQ2LjYzWk0yOTE4LjMxIDcyNC42NEwyODE0Ljc4IDcyNC42NEwyODE0Ljc4IDE5NS44NEwyOTE4LjMxIDE5NS44NEwyOTE4LjMxIDcyNC42NFpNMzEyNi4wOSA3MjQuNjRMMzAyMi41NyA3MjQuNjRMMzAyMi41NyAzNjcuODlMMzEyNi4wOSAzNjcuODlMMzEyNi4wOSA3MjQuNjRaTTMwMTEuNCAyNDIuMDJDMzAxMS40IDIwNy4wMSAzMDM4Ljk1IDE4MC45NSAzMDczLjk2IDE4MC45NUMzMTA4LjIyIDE4MC45NSAzMTM1Ljc4IDIwNy4wMSAzMTM1Ljc4IDI0Mi4wMkMzMTM1Ljc4IDI3Ni4yOCAzMTA4LjIyIDMwMS42IDMwNzMuOTYgMzAxLjZDMzAzOC45NSAzMDEuNiAzMDExLjQgMjc2LjI4IDMwMTEuNCAyNDIuMDJaTTM1MDIuMiA3MTkuNDJDMzQ1OS4wMSA3MzIuODMgMzQzOS42NCA3MzUuODEgMzQwNi4xMyA3MzUuODFDMzMxOS43MyA3MzUuODEgMzI2My4xMyA2NzQuNzQgMzI2My4xMyA1ODIuMzhMMzI2My4xMyA0NTUuMDNMMzE4Ny45MSA0NTUuMDNMMzE4Ny45MSAzNjcuODlMMzI2My4xMyAzNjcuODlMMzI2My4xMyAyNDAuNTNMMzM2NS45MSAyNDAuNTNMMzM2NS45MSAzNjcuODlMMzQ5NC43NiAzNjcuODlMMzQ5NC43NiA0NTUuMDNMMzM2NS45MSA0NTUuMDNMMzM2NS45MSA1ODEuNjRDMzM2NS45MSA2MjEuODYgMzM5MC40OSA2NDAuNDggMzQyOC40NyA2NDAuNDhDMzQ0Ny44MyA2NDAuNDggMzQ2OC42OSA2MzYuMDEgMzQ4OC44IDYzMC44TDM1MDIuMiA3MTkuNDJaTTM5MTcuNzkgNzI0LjY0TDM4MTQuMjYgNzI0LjY0TDM4MTQuMjYgNjk5LjMxQzM3ODUuMjIgNzIyLjQgMzc1Mi40NCA3MzUuODEgMzcxMi4yMyA3MzUuODFDMzYxOC4zOCA3MzUuODEgMzU1NS44MiA2NjguMDMgMzU1NS44MiA1NjQuNTFMMzU1NS44MiAzNjcuODlMMzY1OS4zNSAzNjcuODlMMzY1OS4zNSA1NTQuODNDMzY1OS4zNSA2MTEuNDMgMzY4Ny42NSA2NDEuOTcgMzczNi4wNiA2NDEuOTdDMzc2Mi4xMyA2NDEuOTcgMzc5MC40MyA2MjYuMzMgMzgxNC4yNiA1OTcuMjhMMzgxNC4yNiAzNjcuODlMMzkxNy43OSAzNjcuODlMMzkxNy43OSA3MjQuNjRaTTQzNTcuMjEgNzI0LjY0TDQyNTMuNjkgNzI0LjY0TDQyNTMuNjkgNzAzLjc4QzQyMjYuMTMgNzIxLjY2IDQxOTIuNjIgNzMyLjA4IDQxNTIuNCA3MzIuMDhDNDA1NC4wOSA3MzIuMDggMzk3NC4zOSA2NTAuOSAzOTc0LjM5IDU0NS44OUMzOTc0LjM5IDQ0Mi4zNiA0MDU0LjA5IDM2MC40NCA0MTUyLjQgMzYwLjQ0QzQxOTIuNjIgMzYwLjQ0IDQyMjYuMTMgMzcwLjg2IDQyNTMuNjkgMzg4Ljc0TDQyNTMuNjkgMTk1Ljg0TDQzNTcuMjEgMTk1Ljg0TDQzNTcuMjEgNzI0LjY0Wk00MjUzLjY5IDYwMy4yNEw0MjUzLjY5IDQ4OS4yOUM0MjMwLjYgNDU4Ljc1IDQyMDAuMDYgNDQ4LjMyIDQxNjkuNTMgNDQ4LjMyQzQxMTUuMTYgNDQ4LjMyIDQwNzcuMTcgNDkzLjc1IDQwNzcuMTcgNTQ1Ljg5QzQwNzcuMTcgNTk4Ljc3IDQxMTUuMTYgNjQ0Ljk1IDQxNjkuNTMgNjQ0Ljk1QzQyMDAuMDYgNjQ0Ljk1IDQyMzAuNiA2MzQuNTIgNDI1My42OSA2MDMuMjRaTTQ3NzcuMjcgNTcyLjdMNDUxNC4zNiA1NzIuN0M0NTIyLjU1IDYxNC40MSA0NTUwLjExIDY0Ny4xOCA0NjA2LjcxIDY0Ny4xOEM0NjM1Ljc2IDY0Ny4xOCA0NjU1Ljg3IDYzOC4yNCA0NjY3LjA0IDYyMC4zN0w0Nzc1LjAzIDYyMC4zN0M0NzU1LjY3IDY4OC44OSA0Njg4LjY0IDczNS44MSA0NjA0LjQ4IDczNS44MUM0NDg5Ljc4IDczNS44MSA0NDEyLjMyIDY1My4xNCA0NDEyLjMyIDU0Ni42M0M0NDEyLjMyIDQzNi40MSA0NDg5LjA0IDM1Ni43MSA0NjAxLjUgMzU2LjcxQzQ3MDMuNTMgMzU2LjcxIDQ3NzkuNSA0MjguOTYgNDc3OS41IDUzOS4xOEM0Nzc5LjUgNTU0LjA4IDQ3NzguNzYgNTYyLjI3IDQ3NzcuMjcgNTcyLjdaTTQ1MTUuMSA1MTEuNjNMNDY3Ni43MiA1MTEuNjNDNDY3MC43NiA0NjYuOTQgNDY0My45NSA0NDIuMzYgNDYwMi4yNCA0NDIuMzZDNDU1Mi4zNCA0NDIuMzYgNDUyNC43OSA0NzEuNDEgNDUxNS4xIDUxMS42M1oiIC8+Cjwvc3ZnPg==" class="amp-logo-img" alt="Amplitude"></div>
-        <div class="upload-overlay"><span>Replace logo</span></div>
+        <div class="upload-overlay"><span>Replace</span></div>
       </div>
       <span class="logo-divider">×</span>
-      <span class="vertical-label" contenteditable="true" data-key="partner">CVS</span>
+      <div class="logo-upload-wrap" onclick="document.getElementById('upload-cvs-logo').click()" title="Click to replace CVS logo">
+        <div class="cvs-chip" id="cvs-logo-display"><img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjwhLS0gQ3JlYXRlZCB3aXRoIElua3NjYXBlIChodHRwOi8vd3d3Lmlua3NjYXBlLm9yZy8pIGJ5IE1hcnN1cGlsYW1pIC0tPgo8c3ZnCiAgIHhtbG5zOnN2Zz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiAgIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgdmVyc2lvbj0iMS4xIgogICB3aWR0aD0iMTAyNCIKICAgaGVpZ2h0PSIxMzYiCiAgIHZpZXdCb3g9Ii0wLjY3ODc1IC0wLjY3ODc1IDE4MS4wNDgyMyAyMy45ODI1IgogICBpZD0ic3ZnMzIyNiI+CiAgPGRlZnMKICAgICBpZD0iZGVmczMyMjgiIC8+CiAgPHBhdGgKICAgICBkPSJtIDE1Mi4xNDQ0OSwyMi4yNTM4OCBjIDAuNDAxMjUsMCAxLjAzLC0wLjA4NSAxLjM0Mzc1LC0wLjIgbCAwLC0xLjk0NSBjIC0wLjQsMC4wODUgLTAuNzQyNSwwLjExMzc1IC0xLjA1NzUsMC4xMTM3NSAtMS4wMywwIC0xLjUxNjI1LC0wLjU0MjUgLTEuNTE2MjUsLTIuMTQ1IGwgMCwtMTcuNDc3NSAtNC40MDUsMCAwLDEuOTQ2MjUgMi4wMDI1LDAgMCwxNS42NDUgYyAwLDIuNjYxMjUgMS4wNTg3NSw0LjA2MjUgMy42MzI1LDQuMDYyNSBtIDUuOTUsLTQuMDMyNSAwLC05LjA0IDMuMDAyNSwwIDAsLTEuOTQ1IC0zLjAwMjUsMCAwLC0zLjc3NSAtMi40MDI1LDAgMCwzLjc3NSAtMi4yODg3NSwwIDAsMS45NDUgMi4yODg3NSwwIDAsOS4xNTM3NSBjIDAsMi42MzEyNSAxLjE3MjUsMy45MTg3NSAzLjk0NzUsMy45MTg3NSAwLjQyODc1LDAgMS4xMTUsLTAuMDg1IDEuNDU3NSwtMC4yIGwgMCwtMS45NDUgYyAtMC40NTc1LDAuMDg1IC0wLjg1NzUsMC4xMTM3NSAtMS4yMjg3NSwwLjExMzc1IC0xLjIwMjUsMCAtMS43NzM3NSwtMC40Mjg3NSAtMS43NzM3NSwtMi4wMDEyNSBtIC0zOC43MywtOS40MTEyNSBjIDMuMTQ2MjUsMCA0Ljc3NjI1LDIuMjMxMjUgNS4wMzM3NSw0LjcyIGwgLTEwLjMyNSwwIGMgMC4yODYyNSwtMi43MTc1IDIuMTE2MjUsLTQuNzIgNS4yOTEyNSwtNC43MiBtIDExLjY0MTI1LDUuODM1IGMgMCwtMy4zNzUgMi4xNDYyNSwtNS44MDYyNSA1LjE3NzUsLTUuODA2MjUgMy4wNjEyNSwwIDUuMTQ4NzUsMi40ODc1IDUuMTQ4NzUsNS44MDYyNSAwLDMuMzE3NSAtMi4wODc1LDUuODA3NSAtNS4xNDg3NSw1LjgwNzUgLTMuMDMxMjUsMCAtNS4xNzc1LC0yLjQzMjUgLTUuMTc3NSwtNS44MDc1IG0gMzcuODQzNzUsNS40NjM3NSAtMi4wMDI1LDAgMCwtNi42MzYyNSBjIDAsLTMuMDg4NzUgMS41NzM3NSwtNC42MzM3NSA0LjM0NzUsLTQuNjMzNzUgMi40ODg3NSwwIDQuMDkxMjUsMS41NDUgNC4wOTEyNSw0LjYzMzc1IGwgMCw2LjYzNjI1IC0yLjAwMjUsMCAwLDEuOTQ1IDYuNDA3NSwwIDAsLTEuOTQ1IC0yLjAwMjUsMCAwLC02LjYzNjI1IGMgMCwtMy42OSAtMi4yMDI1LC02LjY2NSAtNi4yMDc1LC02LjY2NSAtMi4wODc1LDAgLTMuNjMyNSwwLjgwMTI1IC00LjYzMzc1LDIuMDg4NzUgbCAwLC04LjI5NjI1IC00LjQwNSwwIDAsMS45NDYyNSAyLjAwMjUsMCAwLDE3LjU2MjUgLTIuMDAyNSwwIDAsMS45NDUgNi40MDc1LDAgMCwtMS45NDUgeiBtIC03My42MjYyNDksLTEwLjU1NSAwLC02Ljk1MTI1IDIuMTQ1LDAgMCwtMi4wMDI1IC02Ljc3ODc1LDAgMCwyLjAwMjUgMi4xNDUsMCAwLDE3LjQ0ODc1IC0yLjE0NSwwIDAsMi4wMDI1IDYuNzc4NzUsMCAwLC0yLjAwMjUgLTIuMTQ1LDAgMCwtOC41NTI1IDEwLjc1NDk5OSwwIDAsOC41NTI1IC0yLjE0NSwwIDAsMi4wMDI1IDYuNzc4NzUsMCAwLC0yLjAwMjUgLTIuMTQ1LDAgMCwtMTcuNDQ4NzUgMi4xNDUsMCAwLC0yLjAwMjUgLTYuNzc4NzUsMCAwLDIuMDAyNSAyLjE0NSwwIDAsNi45NTEyNSAtMTAuNzU0OTk5LDAgeiBtIDMxLjIzNDk5OSw4LjUyMzc1IC0yLjQwMjUsMCBjIC0wLjg1ODc1LDEuNDg3NSAtMi40MDI1LDIuNDAyNSAtNC42MDUsMi40MDI1IC0zLjM0NzUsMCAtNS4xNDg3NSwtMi4wMzEyNSAtNS4zNzc1LC01LjAzMzc1IGwgMTIuNzI4NzUsMCAwLC0xLjA1ODc1IGMgMCwtNC41MTg3NSAtMi44ODg3NSwtNy41OCAtNy40Mzc1LC03LjU4IC00LjU3NjI1LDAgLTcuNzUxMjUsMy4yMzI1IC03Ljc1MTI1LDcuODM3NSAwLDQuNjMzNzUgMy4xNzUsNy44Mzc1IDcuNzUxMjUsNy44Mzc1IDMuMzQ2MjUsMCA1LjkyMTI1LC0xLjY4NzUgNy4wOTM3NSwtNC40MDUgbSAxNC43ODg3NSwzLjk3NjI1IDQuNDA1LDAgMCwtMS45NDUgLTIuMDAyNSwwIDAsLTEwLjkyNzUgMi4wMDI1LDAgMCwtMS45NDUgLTQuNDA1LDAgMCwyLjIwMjUgYyAtMS4yNTg3NSwtMS42MyAtMy4xNDc1LC0yLjYzMTI1IC01LjM3ODc1LC0yLjYzMTI1IC00LjIwMzc1LDAgLTcuMzIxMjUsMy4zNzUgLTcuMzIxMjUsNy44Mzc1IDAsNC40NjI1IDMuMTE3NSw3LjgzNzUgNy4zMjEyNSw3LjgzNzUgMi4yMzEyNSwwIDQuMTIsLTEuMDAxMjUgNS4zNzg3NSwtMi42MzEyNSBsIDAsMi4yMDI1IHoiCiAgICAgaWQ9InBhdGgzMTM1IgogICAgIHN0eWxlPSJmaWxsOiMwMDAwMDA7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiIC8+CiAgPHBhdGgKICAgICBkPSJtIDcuNjY1MDAwOSwwLjAyODc1IGMgLTAuODEyNSwwIC0xLjYyMzc1LDAuMzEgLTIuMjQ1LDAuOTMyNSBsIC00LjQ5MjQ5OTk1LDQuNDkyNSBjIC0xLjIzNzUsMS4yMzc1IC0xLjIzNzUsMy4yNTEyNSAwLjAwNSw0LjQ5MjUgTCAxMy42MTEyNTEsMjIuNjI1IDI2LjI5MDAwMSw5Ljk0NjI1IGMgMS4yNDEyNSwtMS4yNCAxLjIzODc1LC0zLjI1MjUgLTAuMDAyLC00LjQ5MjUgbCAtNC40ODg3NSwtNC40OSBDIDIxLjE3ODAwMSwwLjM0IDIwLjM2Njc1MSwwLjAzIDE5LjU1NTUwMSwwLjAzIGMgLTAuODE1LDAgLTEuNjI4NzUsMC4zMTI1IC0yLjI1MjUsMC45Mzc1IEwgMTMuNjExNzUxLDQuNjYgOS45MTQyNTA5LDAuOTYyNSBjIC0wLjYyLC0wLjYyMjUgLTEuNDMzNzUsLTAuOTMzNzUgLTIuMjQ4NzUsLTAuOTMzNzUgTSA0OS40NTY3NTEsMC42IGwgNy4wMDg3NSwwIDMuNjAzNzUsMTMuODQ1IDMuODYxMjUsLTEzLjg0NSA2Ljc1LDAgLTcuMjA3NSwyMS40MjUgLTYuODM2MjUsMCAtNy4xOCwtMjEuNDI1IHogbSAxLjQ1ODc1LDEzLjEwMTI1IGMgLTAuMzcxMjUsNS42MzUgLTQuMDksOC45MjM3NSAtMTAuMjQsOC45MjM3NSAtNi44MzYyNSwwIC0xMS4wMTI1LC00LjM0NzUgLTExLjAxMjUsLTExLjI5NzUgMCwtNy4wMDg3NSA0LjIwNSwtMTEuMzI3NSAxMC44NywtMTEuMzI3NSA2LjIwNjI1LDAgOS44Njc1LDMuMTQ2MjUgMTAuMjY4NzUsOC42OTUgbCAtNi41NTEyNSwwIGMgLTAuMiwtMi4xNzM3NSAtMS40MywtMy4zMTc1IC0zLjYzMjUsLTMuMzE3NSAtMi42ODg3NSwwIC00LjAzMjUsMS45NzM3NSAtNC4wMzI1LDUuOTUgMCwzLjg5IDEuNDU4NzUsNS45MiA0LjIzMjUsNS45MiAyLjA4ODc1LDAgMy40MDM3NSwtMS4yNTg3NSAzLjYwNSwtMy41NDYyNSBsIDYuNDkyNSwwIHogbSAyNS4yNTc1LDEuNjMgYyAwLjM0Mzc1LDEuNjAyNSAxLjI1ODc1LDIuMTc1IDMuMTQ2MjUsMi4xNzUgMS42NTg3NSwwIDIuNTc1LC0wLjYwMTI1IDIuNTc1LC0xLjU0NjI1IDAsLTEuMzQzNzUgLTEuMjMsLTEuNDU3NSAtMy43NzYyNSwtMi4xMTYyNSAtMi45NzUsLTAuNzcxMjUgLTQuODkxMjUsLTEuNDMgLTUuNzc3NSwtMi4wNiAtMS42NiwtMS4xNzEyNSAtMi40NiwtMi44MzEyNSAtMi40NiwtNC45NDc1IDAsLTQuMTQ3NSAzLjI2LC02LjgzNjI1IDguOTUyNSwtNi44MzYyNSA1LjUyMTI1LDAgOC43ODEyNSwyLjQzMTI1IDkuMTUzNzUsNi43NTEyNSBsIC02LjQ5Mzc1LDAgYyAtMC4yMjg3NSwtMS4yODc1IC0xLjExNSwtMS44ODg3NSAtMi43NzM3NSwtMS44ODg3NSAtMS40NTg3NSwwIC0yLjE3NSwwLjQ4NjI1IC0yLjE3NSwxLjQ1ODc1IDAsMS4xNDUgMS4xMTYyNSwxLjM0NSAzLjE3NjI1LDEuODg3NSAyLjY2LDAuNjg3NSA0Ljc3NjI1LDEuMTE2MjUgNi4xMiwyLjAzMTI1IDEuODg4NzUsMS4yNTg3NSAyLjc0NjI1LDIuODAzNzUgMi43NDYyNSw1LjAwNjI1IDAsNC42NjEyNSAtMy4zNDYyNSw3LjM3ODc1IC05LjU1Mzc1LDcuMzc4NzUgLTUuNzQ4NzUsMCAtOS4xMjUsLTIuNzE3NSAtOS41NTM3NSwtNy4yOTM3NSBsIDYuNjkzNzUsMCB6IgogICAgIGlkPSJwYXRoMzEzOSIKICAgICBzdHlsZT0iZmlsbDojY2MwMDAwO2ZpbGwtb3BhY2l0eToxO2ZpbGwtcnVsZTpub256ZXJvO3N0cm9rZTpub25lIiAvPgo8L3N2Zz4KPCEtLSB2ZXJzaW9uOiAyMDExMDMxMSwgb3JpZ2luYWwgc2l6ZTogMTc5LjY5MDczIDIyLjYyNSwgYm9yZGVyOiAzJSAtLT4K" class="cvs-logo-img" alt="CVS Health"></div>
+        <div class="upload-overlay"><span>Replace</span></div>
+      </div>
     </div>
     <h1 contenteditable="true" data-key="headline">Adobe Analytics,<br>Translated to Amplitude</h1>
     <p class="sub" contenteditable="true" data-key="sub">A working reference for CVS's MarTech &amp; Digital Analytics teams — mapping segments, calculated metrics, eVars, props, and traffic KPIs to how they work in Amplitude.</p>
   </div>
 
-  <!-- MAPPING -->
-  <div class="section">
-    <div class="eyebrow" contenteditable="true" data-key="eb1">Quick reference</div>
-    <div class="map-card">
-      <table class="map">
-        <thead><tr><th>Adobe Analytics</th><th>Amplitude</th><th>Notes</th></tr></thead>
-        <tbody>
-        <tr>
-          <td class="c-adobe" contenteditable="true">Unique Visitors</td>
-          <td class="c-amp" contenteditable="true">Unique users</td>
-          <td class="c-note" contenteditable="true">Distinct Amplitude ID (User ID + Device ID count)</td>
-        </tr>
-        <tr>
-          <td class="c-adobe" contenteditable="true">Visits</td>
-          <td class="c-amp" contenteditable="true">Sessions</td>
-          <td class="c-note" contenteditable="true">Configurable session definition; analyze in User Sessions</td>
-        </tr>
-        <tr>
-          <td class="c-adobe" contenteditable="true">Hits / server calls</td>
-          <td class="c-amp" contenteditable="true">Events</td>
-          <td class="c-note" contenteditable="true">Every tracked action is an event — the core unit</td>
-        </tr>
-        <tr>
-          <td class="c-adobe" contenteditable="true">Page Views</td>
-          <td class="c-amp" contenteditable="true">PageView event</td>
-          <td class="c-note" contenteditable="true">Auto-captured by the Browser SDK</td>
-        </tr>
-        <tr>
-          <td class="c-adobe" contenteditable="true">Instances</td>
-          <td class="c-amp" contenteditable="true">Count / Totals</td>
-          <td class="c-note" contenteditable="true">&ldquo;Totals&rdquo; measure on any event</td>
-        </tr>
-        <tr>
-          <td class="c-adobe" contenteditable="true">eVars (conversion vars)</td>
-          <td class="c-amp" contenteditable="true">User / Event Properties</td>
-          <td class="c-note" contenteditable="true">User Properties persist like eVars; Event Properties are per-event</td>
-        </tr>
-        <tr>
-          <td class="c-adobe" contenteditable="true">props (traffic vars)</td>
-          <td class="c-amp" contenteditable="true">Event Properties</td>
-          <td class="c-note" contenteditable="true">Captured dynamically with the event</td>
-        </tr>
-        <tr>
-          <td class="c-adobe" contenteditable="true">Success events</td>
-          <td class="c-amp" contenteditable="true">Events</td>
-          <td class="c-note" contenteditable="true">Numeric / currency → numeric &amp; $ revenue event properties</td>
-        </tr>
-        <tr>
-          <td class="c-adobe" contenteditable="true">Custom conversion</td>
-          <td class="c-amp" contenteditable="true">Funnel Analysis</td>
-          <td class="c-note" contenteditable="true">Build a funnel on any event — no success event to provision</td>
-        </tr>
-        <tr>
-          <td class="c-adobe" contenteditable="true">Segments</td>
-          <td class="c-amp" contenteditable="true">Cohorts + Segmentation Module</td>
-          <td class="c-note" contenteditable="true">Behavioral &amp; property-based, saved and reusable</td>
-        </tr>
-        <tr>
-          <td class="c-adobe" contenteditable="true">Calculated Metrics</td>
-          <td class="c-amp" contenteditable="true">Formula metrics + Derived Properties</td>
-          <td class="c-note" contenteditable="true">Math, string &amp; regex, computed at query time</td>
-        </tr>
-        <tr>
-          <td class="c-adobe" contenteditable="true">Analysis Workspace</td>
-          <td class="c-amp" contenteditable="true">Data Tables</td>
-          <td class="c-note" contenteditable="true">Multi-dimensional analysis across events &amp; properties</td>
-        </tr>
-        </tbody>
-      </table>
+  <div class="body">
+
+    <!-- MAPPING -->
+    <div class="block">
+      <div class="eyebrow" contenteditable="true" data-key="eb1">Adobe Analytics → Amplitude · direct comparison</div>
+      <div class="map-card">
+        <table class="map">
+          <thead><tr><th>Adobe Analytics</th><th>Amplitude</th><th>Notes</th></tr></thead>
+          <tbody>
+          <tr>
+            <td class="c-adobe" contenteditable="true">Unique Visitors</td>
+            <td class="c-amp" contenteditable="true">Unique users</td>
+            <td class="c-note" contenteditable="true">Distinct Amplitude ID (User ID + Device ID count)</td>
+          </tr>
+          <tr>
+            <td class="c-adobe" contenteditable="true">Visits</td>
+            <td class="c-amp" contenteditable="true">Sessions</td>
+            <td class="c-note" contenteditable="true">Configurable session definition; analyze in User Sessions</td>
+          </tr>
+          <tr>
+            <td class="c-adobe" contenteditable="true">Hits / server calls</td>
+            <td class="c-amp" contenteditable="true">Events</td>
+            <td class="c-note" contenteditable="true">Every tracked action is an event — the core unit</td>
+          </tr>
+          <tr>
+            <td class="c-adobe" contenteditable="true">Page Views</td>
+            <td class="c-amp" contenteditable="true">PageView event</td>
+            <td class="c-note" contenteditable="true">Auto-captured by the Browser SDK</td>
+          </tr>
+          <tr>
+            <td class="c-adobe" contenteditable="true">Bounce Rate</td>
+            <td class="c-amp" contenteditable="true">Bounce Rate</td>
+            <td class="c-note" contenteditable="true">Session metric in Data Tables</td>
+          </tr>
+          <tr>
+            <td class="c-adobe" contenteditable="true">eVars (conversion vars)</td>
+            <td class="c-amp" contenteditable="true">User / Event Properties</td>
+            <td class="c-note" contenteditable="true">User Properties persist like eVars; Event Properties are per-event</td>
+          </tr>
+          <tr>
+            <td class="c-adobe" contenteditable="true">props (traffic vars)</td>
+            <td class="c-amp" contenteditable="true">Event Properties</td>
+            <td class="c-note" contenteditable="true">Captured dynamically with the event</td>
+          </tr>
+          <tr>
+            <td class="c-adobe" contenteditable="true">Success events</td>
+            <td class="c-amp" contenteditable="true">Events</td>
+            <td class="c-note" contenteditable="true">Numeric / currency → numeric &amp; $ revenue event properties</td>
+          </tr>
+          <tr>
+            <td class="c-adobe" contenteditable="true">Custom conversion</td>
+            <td class="c-amp" contenteditable="true">Funnel Analysis</td>
+            <td class="c-note" contenteditable="true">Any event(s) — no success event to pre-provision</td>
+          </tr>
+          <tr>
+            <td class="c-adobe" contenteditable="true">Segments</td>
+            <td class="c-amp" contenteditable="true">Cohorts + Segmentation Module</td>
+            <td class="c-note" contenteditable="true">Behavioral &amp; property-based, saved and reusable</td>
+          </tr>
+          <tr>
+            <td class="c-adobe" contenteditable="true">Calculated Metrics</td>
+            <td class="c-amp" contenteditable="true">Formula metrics + Derived Properties</td>
+            <td class="c-note" contenteditable="true">Math, string &amp; regex, computed at query time</td>
+          </tr>
+          <tr>
+            <td class="c-adobe" contenteditable="true">Analysis Workspace</td>
+            <td class="c-amp" contenteditable="true">Data Tables</td>
+            <td class="c-note" contenteditable="true">Multi-dimensional analysis across events &amp; properties</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
-  </div>
 
-  <!-- VISUALIZATION EXAMPLES -->
-  <div class="section">
-    <div class="eyebrow" contenteditable="true" data-key="eb2">Workspace visualization examples</div>
-    <div class="viz-grid">
+    <!-- LOWER TWO-COLUMN -->
+    <div class="two-col">
 
-      <div class="viz" id="viz-0" onclick="document.getElementById('upload-viz-0').click()" title="Click to replace with a real screenshot">
-        <div class="viz-body">
+      <!-- viz -->
+      <div>
+        <div class="eyebrow" contenteditable="true" data-key="eb2">Workspace visualization examples</div>
+
+        <div class="viz">
           <div class="viz-cap"><b>Data Tables</b> — multi-dimensional (Analysis Workspace equivalent)</div>
-          <div style="margin-top:8px;">
-            <table class="mtbl">
-              <thead><tr><th>Segment</th><th>Unique users</th><th>Conversion</th></tr></thead>
-              <tbody>
-                <tr><td class="seg">Pharmacy app</td><td><span class="barbg"><span class="bar" style="width:60px"></span></span>842K</td><td class="pct">31.4%</td></tr>
-                <tr><td class="seg">CVS.com web</td><td><span class="barbg"><span class="bar" style="width:44px"></span></span>610K</td><td class="pct">24.1%</td></tr>
-                <tr><td class="seg">MinuteClinic</td><td><span class="barbg"><span class="bar" style="width:22px"></span></span>218K</td><td class="pct">18.7%</td></tr>
-                <tr><td class="seg">ExtraCare</td><td><span class="barbg"><span class="bar" style="width:33px"></span></span>402K</td><td class="pct">27.9%</td></tr>
-              </tbody>
-            </table>
-          </div>
+          <table class="mtbl">
+            <thead><tr><th>Segment</th><th>Unique users</th><th>Conversion</th></tr></thead>
+            <tbody>
+              <tr><td class="seg" contenteditable="true">Pharmacy app</td><td><span class="barbg"><span class="bar" style="width:48px"></span></span><span contenteditable="true">842K</span></td><td class="pct" contenteditable="true">31.4%</td></tr>
+              <tr><td class="seg" contenteditable="true">CVS.com web</td><td><span class="barbg"><span class="bar" style="width:35px"></span></span><span contenteditable="true">610K</span></td><td class="pct" contenteditable="true">24.1%</td></tr>
+              <tr><td class="seg" contenteditable="true">MinuteClinic</td><td><span class="barbg"><span class="bar" style="width:18px"></span></span><span contenteditable="true">218K</span></td><td class="pct" contenteditable="true">18.7%</td></tr>
+              <tr><td class="seg" contenteditable="true">ExtraCare</td><td><span class="barbg"><span class="bar" style="width:27px"></span></span><span contenteditable="true">402K</span></td><td class="pct" contenteditable="true">27.9%</td></tr>
+            </tbody>
+          </table>
         </div>
-        <img class="viz-img" id="viz-0-img" alt="">
-        <div class="viz-overlay"><span>Replace with screenshot</span></div>
-      </div>
 
-      <div class="viz" id="viz-1" onclick="document.getElementById('upload-viz-1').click()" title="Click to replace with a real screenshot">
-        <div class="viz-body">
+        <div class="viz">
           <div class="viz-cap"><b>Segmentation</b> — include / exclude &amp; regex containers</div>
-          <div style="margin-top:10px;">
-            <div class="filt-row"><span class="tag-inc">Include</span></div>
-            <div class="filt-row"><span class="chip k">Page URL</span><span class="chip o">contains</span><span class="chip v">/pharmacy</span></div>
-            <div class="filt-row"><span class="chip k">Page URL</span><span class="chip o">glob match</span><span class="chip v">*/schedule/*</span></div>
-            <div class="filt-row" style="margin-top:9px;"><span class="tag-exc">Exclude</span></div>
-            <div class="filt-row"><span class="chip k">User type</span><span class="chip o">is</span><span class="chip v">internal</span></div>
-            <div class="filt-row" style="margin-top:9px;"><span class="chip k" style="background:#f3ecff;color:#5b21b6;">Derived</span><span class="chip re">REGEXEXTRACT(url, "rx=([0-9]+)")</span></div>
-          </div>
+          <div class="filt-row"><span class="tag-inc">Include</span></div>
+          <div class="filt-row"><span class="chip k" contenteditable="true">Page URL</span><span class="chip o" contenteditable="true">contains</span><span class="chip v" contenteditable="true">/pharmacy</span></div>
+          <div class="filt-row"><span class="chip k" contenteditable="true">Page URL</span><span class="chip o" contenteditable="true">glob match</span><span class="chip v" contenteditable="true">*/schedule/*</span></div>
+          <div class="filt-row" style="margin-top:8px;"><span class="tag-exc">Exclude</span></div>
+          <div class="filt-row"><span class="chip k" contenteditable="true">User type</span><span class="chip o" contenteditable="true">is</span><span class="chip v" contenteditable="true">internal</span></div>
+          <div class="filt-row" style="margin-top:8px;"><span class="chip d" contenteditable="true">Derived</span><span class="chip re" contenteditable="true">REGEXEXTRACT(url, "rx=([0-9]+)")</span></div>
         </div>
-        <img class="viz-img" id="viz-1-img" alt="">
-        <div class="viz-overlay"><span>Replace with screenshot</span></div>
       </div>
 
-    </div>
-  </div>
+      <!-- limits -->
+      <div>
+        <div class="eyebrow" contenteditable="true" data-key="eb3">Segment &amp; dimension limits</div>
+        <div class="tiles">
+        <div class="tile">
+          <div class="tile-num" contenteditable="true">2,000</div>
+          <div class="tile-label" contenteditable="true">event types / project</div>
+        </div>
+        <div class="tile">
+          <div class="tile-num" contenteditable="true">2,000</div>
+          <div class="tile-label" contenteditable="true">event properties / project</div>
+        </div>
+        <div class="tile">
+          <div class="tile-num" contenteditable="true">1,000</div>
+          <div class="tile-label" contenteditable="true">user properties / project</div>
+        </div>
+        <div class="tile">
+          <div class="tile-num" contenteditable="true">10</div>
+          <div class="tile-label" contenteditable="true">segments per chart (30 in breakdown)</div>
+        </div>
+        <div class="tile">
+          <div class="tile-num" contenteditable="true">5</div>
+          <div class="tile-label" contenteditable="true">group-bys per Data Table</div>
+        </div>
+        <div class="tile">
+          <div class="tile-num" contenteditable="true">100 / 500</div>
+          <div class="tile-label" contenteditable="true">single / double group-by display</div>
+        </div>
+        </div>
+        <p class="limit-note" contenteditable="true" data-key="limit-note">Unlike Adobe's fixed eVar / prop / success-event slots, these are <b>generous per-project ceilings</b> — not variables you pre-provision — and there's <b>no cap on properties per event</b>. Group-by results prune to top values for performance; Data Tables allow up to 5 top-level group-bys. Source: Amplitude <i>Limits &amp; quotas</i>.</p>
+      </div>
 
-  <!-- LIMITS -->
-  <div class="section">
-    <div class="eyebrow" contenteditable="true" data-key="eb3">Limits to review — segments, dimensions &amp; instrumentation</div>
-    <div class="tiles">
-      <div class="tile">
-        <div class="tile-num" contenteditable="true">2,000</div>
-        <div class="tile-label" contenteditable="true">event types / project</div>
-      </div>
-      <div class="tile">
-        <div class="tile-num" contenteditable="true">2,000</div>
-        <div class="tile-label" contenteditable="true">event properties / project</div>
-      </div>
-      <div class="tile">
-        <div class="tile-num" contenteditable="true">1,000</div>
-        <div class="tile-label" contenteditable="true">user properties / project</div>
-      </div>
-      <div class="tile">
-        <div class="tile-num" contenteditable="true">10</div>
-        <div class="tile-label" contenteditable="true">segments per chart (30 in breakdown)</div>
-      </div>
-      <div class="tile">
-        <div class="tile-num" contenteditable="true">5</div>
-        <div class="tile-label" contenteditable="true">group-bys per Data Table</div>
-      </div>
-      <div class="tile">
-        <div class="tile-num" contenteditable="true">100 / 500</div>
-        <div class="tile-label" contenteditable="true">single / double group-by display</div>
-      </div>
-    </div>
-    <p class="limit-note" contenteditable="true" data-key="limit-note">Unlike Adobe's fixed eVar / prop / success-event slots, these are <b>generous per-project ceilings</b>, not variables you pre-provision — and there's <b>no cap on properties per event</b>. Group-by results prune to the top values for performance (100 single / 500 double); Data Tables allow up to 5 top-level group-bys. Source: Amplitude <i>Limits &amp; quotas</i> and <i>Group-bys</i> docs.</p>
-  </div>
-
-  <!-- CONCEPTS -->
-  <div class="section" style="background:#f7f8fc;">
-    <div class="eyebrow" contenteditable="true" data-key="eb4">How your Adobe workflows map</div>
-    <div class="features-grid">
-      <div class="feature">
-        <div class="feature-icon-wrap"><svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 6h20l-8 9v7l-4-2v-5L4 6z" stroke="#0052F2" stroke-width="1.6" stroke-linejoin="round" fill="none"/></svg></div>
-        <div class="feature-text">
-          <div class="feature-title" contenteditable="true">Segments, metrics &amp; containers</div>
-          <div class="feature-desc" contenteditable="true">Segments → <b>Cohorts</b> + inline segments. Include / exclude with <b>is</b>, <b>contains</b>, <b>glob</b> wildcards, and full <b>regex</b> (REGEXEXTRACT / REGEXREPLACE) via <b>Derived Properties</b>. Calculated Metrics → <b>Formula metrics</b>; Analysis Workspace → <b>Data Tables</b>.</div>
-        </div>
-      </div>
-      <div class="feature">
-        <div class="feature-icon-wrap"><svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="4" width="7" height="7" rx="1.5" stroke="#0052F2" stroke-width="1.6"/><rect x="17" y="4" width="7" height="7" rx="1.5" stroke="#0052F2" stroke-width="1.6"/><rect x="4" y="17" width="7" height="7" rx="1.5" stroke="#0052F2" stroke-width="1.6"/><rect x="17" y="17" width="7" height="7" rx="1.5" stroke="#0052F2" stroke-width="1.6"/></svg></div>
-        <div class="feature-text">
-          <div class="feature-title" contenteditable="true">Data model without the slots</div>
-          <div class="feature-desc" contenteditable="true">No rigid eVar / prop / success-event slots to provision. Events &amp; properties live in one governed <b>Tracking Plan</b>, captured dynamically up to generous per-project ceilings (2,000 / 2,000 / 1,000). No cap on properties per event.</div>
-        </div>
-      </div>
-      <div class="feature">
-        <div class="feature-icon-wrap"><svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 24V4" stroke="#0052F2" stroke-width="1.6" stroke-linecap="round"/><path d="M4 24h20" stroke="#0052F2" stroke-width="1.6" stroke-linecap="round"/><path d="M7 18l5-5 4 3 7-8" stroke="#0052F2" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 8h3v3" stroke="#0052F2" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div class="feature-text">
-          <div class="feature-title" contenteditable="true">Traffic KPIs &amp; conversion</div>
-          <div class="feature-desc" contenteditable="true">Unique Visitors → <b>Unique users</b>, Visits → <b>Sessions</b>, Hits → <b>Events</b>, Page Views → <b>PageView</b>, Bounce Rate → the <b>Bounce Rate</b> session metric. Any conversion = a <b>Funnel</b> on the events that matter.</div>
-        </div>
-      </div>
     </div>
   </div>
 
   <div class="footer">
-    <div class="footer-copy">© 2026 Amplitude Inc. Confidential.</div>
+    <div class="footer-copy">© 2026 Amplitude Inc. Confidential · prepared for CVS</div>
     <div class="ae-block">
       <div class="ae-name" contenteditable="true" data-key="ae-name">PJ Franovic</div>
       <div class="ae-title" contenteditable="true" data-key="ae-title">Enterprise Account Executive – CVS</div>
@@ -354,23 +307,21 @@ table.map tbody tr:last-child td { border-bottom:none; }
 </div>
 
 <script>
-const STORAGE_KEY = 'cvs-adobe-map-v2-edits';
+const STORAGE_KEY = 'cvs-adobe-map-a4-edits';
 function collect(){ const d={}; document.querySelectorAll('[contenteditable]').forEach((el,i)=>{ const k=el.dataset.key||('n'+i); d[k]=el.innerHTML; });
-  const l=document.getElementById('amp-logo-display').querySelector('img'); if(l && !l.src.startsWith('data:image/svg+xml;base64,PHN')) d['__amplogo']=l.src;
-  ['viz-0','viz-1'].forEach(id=>{ const im=document.getElementById(id+'-img'); if(im && im.style.display==='block') d['__'+id]=im.src; });
+  const a=document.getElementById('amp-logo-display').querySelector('img'); if(a && !a.src.startsWith('data:image/svg+xml;base64,PHN')) d['__amp']=a.src;
+  const c=document.getElementById('cvs-logo-display').querySelector('img'); if(c && c.src && c.src.length && !c.src.includes('CVS_Health')) d['__cvs']=c.src;
   return d; }
 function saveEdits(){ localStorage.setItem(STORAGE_KEY, JSON.stringify(collect())); const b=document.getElementById('save-status'); b.textContent='✓ Saved'; setTimeout(()=>b.textContent='💾 Save edits',1500); }
 function restore(){ let d; try{ d=JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}'); }catch(e){ return; }
   document.querySelectorAll('[contenteditable]').forEach((el,i)=>{ const k=el.dataset.key||('n'+i); if(d[k]!==undefined) el.innerHTML=d[k]; });
-  if(d['__amplogo']) document.getElementById('amp-logo-display').innerHTML='<img src="'+d['__amplogo']+'" class="amp-logo-img" alt="Amplitude">';
-  ['viz-0','viz-1'].forEach(id=>{ if(d['__'+id]) showViz(id, d['__'+id]); }); }
-function showViz(id, url){ const card=document.getElementById(id); const im=document.getElementById(id+'-img'); im.src=url; im.style.display='block'; card.querySelectorAll('.viz-body').forEach(e=>e.style.display='none'); }
+  if(d['__amp']) document.getElementById('amp-logo-display').innerHTML='<img src="'+d['__amp']+'" class="amp-logo-img" alt="Amplitude">';
+  if(d['__cvs']) document.getElementById('cvs-logo-display').innerHTML='<img src="'+d['__cvs']+'" class="cvs-logo-img" alt="CVS">'; }
 function resetPage(){ if(!confirm('Reset all edits back to defaults?')) return; localStorage.removeItem(STORAGE_KEY); location.reload(); }
-function printPDF(){ if(document.activeElement) document.activeElement.blur(); const p=document.querySelector('.page'); p.style.zoom=''; void p.offsetHeight; p.style.zoom=Math.min(1075/p.scrollHeight,1); requestAnimationFrame(()=>requestAnimationFrame(()=>{ window.print(); const r=()=>p.style.zoom=''; window.addEventListener('afterprint',r,{once:true}); setTimeout(r,3000); })); }
-function wireUpload(inputId, cb){ document.getElementById(inputId).addEventListener('change', function(){ if(!this.files[0]) return; const r=new FileReader(); r.onload=e=>{ cb(e.target.result); saveEdits(); }; r.readAsDataURL(this.files[0]); this.value=''; }); }
-wireUpload('upload-amp-logo', url=>{ document.getElementById('amp-logo-display').innerHTML='<img src="'+url+'" class="amp-logo-img" alt="Amplitude">'; });
-wireUpload('upload-viz-0', url=>showViz('viz-0', url));
-wireUpload('upload-viz-1', url=>showViz('viz-1', url));
+function printPDF(){ if(document.activeElement) document.activeElement.blur(); setTimeout(()=>window.print(),120); }
+function wireUpload(id, cb){ document.getElementById(id).addEventListener('change', function(){ if(!this.files[0]) return; const r=new FileReader(); r.onload=e=>{ cb(e.target.result); saveEdits(); }; r.readAsDataURL(this.files[0]); this.value=''; }); }
+wireUpload('upload-amp-logo', url=>document.getElementById('amp-logo-display').innerHTML='<img src="'+url+'" class="amp-logo-img" alt="Amplitude">');
+wireUpload('upload-cvs-logo', url=>document.getElementById('cvs-logo-display').innerHTML='<img src="'+url+'" class="cvs-logo-img" alt="CVS">');
 document.addEventListener('input', saveEdits);
 restore();
 </script>
