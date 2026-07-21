@@ -3,90 +3,135 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Adobe Analytics → Amplitude | CVS</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 * { margin:0; padding:0; box-sizing:border-box; }
-body { font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif; background:#e5e5e5; min-height:100vh; display:flex; flex-direction:column; align-items:center; padding:80px 0 64px; color:#111; }
-.page { width:850px; background:#fff; box-shadow:0 8px 40px rgba(0,0,0,0.18); position:relative; }
+:root { --blue:#0052F2; --navy:#001A4F; --ink:#0b0b12; --muted:#5b6172; --line:#e7e9f2; --wash:#f6f7fb; --washb:#eef2fe; }
+body { font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif; background:#dfe2ea; min-height:100vh; display:flex; flex-direction:column; align-items:center; padding:80px 0 64px; color:var(--ink); }
+.page { width:860px; background:#fff; box-shadow:0 12px 50px rgba(10,15,40,0.22); position:relative; }
 input[type=file] { display:none; }
 
 /* toolbar */
-.toolbar { position:fixed; top:16px; left:50%; transform:translateX(-50%); background:#001A4F; display:flex; align-items:center; border-radius:24px; box-shadow:0 4px 20px rgba(0,0,0,0.3); z-index:9999; overflow:hidden; }
-.toolbar-item { padding:9px 16px; cursor:pointer; white-space:nowrap; display:flex; align-items:center; gap:6px; border:none; background:none; color:rgba(255,255,255,0.85); font-size:12px; font-family:inherit; }
-.toolbar-item:hover { background:rgba(255,255,255,0.1); }
-.toolbar-sep { width:1px; background:rgba(255,255,255,0.15); height:28px; }
+.toolbar { position:fixed; top:16px; left:50%; transform:translateX(-50%); background:var(--navy); display:flex; align-items:center; border-radius:24px; box-shadow:0 6px 24px rgba(0,0,0,0.35); z-index:9999; overflow:hidden; }
+.toolbar-item { padding:9px 15px; cursor:pointer; white-space:nowrap; display:flex; align-items:center; gap:6px; border:none; background:none; color:rgba(255,255,255,0.85); font-size:12px; font-family:inherit; }
+.toolbar-item:hover { background:rgba(255,255,255,0.12); }
+.toolbar-sep { width:1px; background:rgba(255,255,255,0.15); height:26px; }
 
-[contenteditable] { outline:none; cursor:text; }
-[contenteditable]:hover { background:rgba(0,82,242,0.06); border-radius:2px; }
-[contenteditable]:focus { background:rgba(0,82,242,0.09); border-radius:2px; box-shadow:0 0 0 2px rgba(0,82,242,0.35); }
+[contenteditable] { outline:none; }
+[contenteditable]:hover { background:rgba(0,82,242,0.06); border-radius:3px; }
+[contenteditable]:focus { background:rgba(0,82,242,0.09); border-radius:3px; box-shadow:0 0 0 2px rgba(0,82,242,0.35); }
 
-/* header (black) */
-.header { background:#0a0a0f; padding:26px 44px 40px; position:relative; overflow:hidden; }
-.shapes-wrap { position:absolute; top:0; right:0; width:360px; height:230px; z-index:1; pointer-events:none; }
+.eyebrow { font-size:10px; font-weight:800; letter-spacing:1.8px; text-transform:uppercase; color:var(--blue); margin-bottom:12px; }
+
+/* header */
+.header { background:radial-gradient(120% 140% at 88% -20%, #1a2fb0 0%, rgba(26,47,176,0) 55%), linear-gradient(135deg,#0a0a12 0%,#0d1024 100%); padding:28px 46px 40px; position:relative; overflow:hidden; }
+.shapes-wrap { position:absolute; top:0; right:0; width:380px; height:240px; z-index:1; pointer-events:none; }
 .shapes-wrap svg { width:100%; height:100%; }
-.logo-bar { display:flex; align-items:center; margin-bottom:26px; position:relative; z-index:3; }
+.logo-bar { display:flex; align-items:center; margin-bottom:24px; position:relative; z-index:3; }
 .logo-upload-wrap { position:relative; display:flex; align-items:center; cursor:pointer; }
 .logo-upload-wrap:hover .upload-overlay { opacity:1; }
 .upload-overlay { position:absolute; inset:-5px; background:rgba(92,107,192,0.25); border:1.5px dashed rgba(255,255,255,0.5); border-radius:6px; display:flex; align-items:center; justify-content:center; opacity:0; transition:opacity .15s; pointer-events:none; }
 .upload-overlay span { color:#fff; font-size:10px; font-weight:600; background:rgba(0,0,0,0.5); padding:3px 6px; border-radius:4px; white-space:nowrap; }
 .amp-logo-img { height:26px; width:auto; display:block; }
-.logo-divider { color:rgba(255,255,255,0.4); font-size:20px; font-weight:300; margin:0 14px; line-height:1; }
+.logo-divider { color:rgba(255,255,255,0.4); font-size:20px; font-weight:300; margin:0 13px; }
 .vertical-label { color:#fff; font-size:15px; font-weight:700; letter-spacing:0.3px; }
-.header h1 { color:#fff; font-size:34px; font-weight:800; line-height:1.14; letter-spacing:-0.8px; max-width:600px; position:relative; z-index:3; }
+.header h1 { color:#fff; font-size:35px; font-weight:900; line-height:1.12; letter-spacing:-0.9px; max-width:600px; position:relative; z-index:3; }
+.header .sub { color:rgba(255,255,255,0.66); font-size:13px; line-height:1.6; max-width:540px; margin-top:12px; position:relative; z-index:3; }
 
-/* body */
-.body { padding:28px 44px 8px; }
-.lead { font-size:15px; font-weight:700; color:#111; line-height:1.45; margin-bottom:12px; }
-.para { font-size:13px; color:#444; line-height:1.6; margin-bottom:20px; }
+/* generic section */
+.section { padding:26px 46px; border-bottom:1px solid var(--line); }
+.section.tight { padding-top:22px; padding-bottom:22px; }
+.lead { font-size:15px; font-weight:700; color:var(--ink); line-height:1.5; }
 
-/* mapping table card */
-.map-card { border:1px solid #e6e8f0; border-radius:10px; overflow:hidden; margin-bottom:6px; }
-.map-title { background:#f5f6fa; padding:10px 16px; font-size:11px; font-weight:800; letter-spacing:1.2px; text-transform:uppercase; color:#667; border-bottom:1px solid #e6e8f0; }
-table { width:100%; border-collapse:collapse; }
-th, td { text-align:left; padding:7px 16px; font-size:11.5px; vertical-align:top; border-bottom:1px solid #f0f1f6; line-height:1.4; }
-thead th { font-size:10px; font-weight:800; letter-spacing:0.6px; text-transform:uppercase; color:#8a90a6; background:#fbfbfd; }
-tbody tr:last-child td { border-bottom:none; }
-.c-adobe { color:#333; font-weight:600; width:26%; }
-.c-amp { color:#0052F2; font-weight:700; width:26%; }
-.c-note { color:#666; width:48%; }
+/* mapping table */
+.map-card { border:1px solid var(--line); border-radius:12px; overflow:hidden; }
+table.map { width:100%; border-collapse:collapse; }
+table.map th, table.map td { text-align:left; padding:7px 16px; font-size:11.5px; vertical-align:top; line-height:1.4; }
+table.map thead th { font-size:9.5px; font-weight:800; letter-spacing:0.8px; text-transform:uppercase; color:#8990a6; background:var(--wash); border-bottom:1px solid var(--line); }
+table.map tbody tr:nth-child(even) { background:#fafbfe; }
+table.map tbody td { border-bottom:1px solid #f0f1f7; }
+table.map tbody tr:last-child td { border-bottom:none; }
+.c-adobe { color:#333; font-weight:600; width:25%; }
+.c-amp { color:var(--blue); font-weight:700; width:27%; }
+.c-note { color:var(--muted); width:48%; }
 
-/* together band */
-.together { background:#eef0f5; padding:22px 44px 30px; margin-top:22px; }
-.together-title { text-align:center; font-size:17px; font-weight:800; color:#111; letter-spacing:-0.3px; margin-bottom:20px; }
-.features-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:26px; }
-.feature { display:flex; gap:12px; align-items:flex-start; }
+/* viz row */
+.viz-grid { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+.viz { position:relative; border:1px solid var(--line); border-radius:12px; overflow:hidden; background:#fff; cursor:pointer; box-shadow:0 2px 10px rgba(10,15,40,0.04); }
+.viz:hover .viz-overlay { opacity:1; }
+.viz-cap { font-size:10.5px; font-weight:700; color:#6a7086; padding:9px 14px 0; }
+.viz-cap b { color:var(--ink); }
+.viz-body { padding:12px 14px 16px; }
+.viz-overlay { position:absolute; inset:0; background:rgba(0,82,242,0.10); border:1.5px dashed rgba(0,82,242,0.45); border-radius:12px; display:flex; align-items:center; justify-content:center; opacity:0; transition:opacity .15s; }
+.viz-overlay span { font-size:11px; font-weight:700; color:#0033b0; background:#fff; padding:5px 12px; border-radius:20px; box-shadow:0 2px 8px rgba(0,0,0,0.12); }
+.viz-img { width:100%; display:none; border-radius:8px; }
+
+/* mock: data table */
+.mtbl { width:100%; border-collapse:collapse; font-size:10px; }
+.mtbl th { text-align:left; color:#9198ad; font-weight:700; padding:4px 6px; border-bottom:1px solid #eef0f6; text-transform:uppercase; letter-spacing:.4px; font-size:8.5px; }
+.mtbl td { padding:5px 6px; border-bottom:1px solid #f4f5fa; color:#3a4058; }
+.mtbl .seg { font-weight:600; color:#22263a; }
+.bar { height:7px; border-radius:3px; background:var(--blue); display:inline-block; vertical-align:middle; }
+.barbg { background:#eef1fb; border-radius:3px; height:7px; width:66px; display:inline-block; overflow:hidden; vertical-align:middle; margin-right:6px; }
+.pct { color:var(--blue); font-weight:700; }
+
+/* mock: segmentation filter */
+.filt-row { display:flex; align-items:center; gap:6px; margin-bottom:7px; font-size:10px; flex-wrap:wrap; }
+.op { display:flex; align-items:center; gap:6px; }
+.chip { padding:3px 8px; border-radius:6px; font-weight:700; font-size:9.5px; }
+.chip.k { background:#eef2fe; color:#0033b0; }
+.chip.o { background:#eafaf0; color:#137a3e; }
+.chip.v { background:#f4f5fa; color:#3a4058; border:1px solid #e7e9f2; }
+.chip.re { background:#fdefe8; color:#b4530f; font-family:ui-monospace,Menlo,monospace; }
+.tag-inc { font-size:8.5px; font-weight:800; letter-spacing:.4px; text-transform:uppercase; color:#137a3e; }
+.tag-exc { font-size:8.5px; font-weight:800; letter-spacing:.4px; text-transform:uppercase; color:#b4530f; }
+
+/* limits tiles */
+.tiles { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+.tile { background:var(--wash); border:1px solid var(--line); border-radius:10px; padding:12px 14px; }
+.tile-num { font-size:22px; font-weight:900; color:var(--blue); letter-spacing:-0.5px; line-height:1; }
+.tile-label { font-size:10.5px; color:var(--muted); margin-top:5px; line-height:1.35; }
+.limit-note { font-size:11px; color:var(--muted); margin-top:12px; line-height:1.5; }
+.limit-note b { color:var(--ink); }
+
+/* concept columns */
+.features-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:24px; }
+.feature { display:flex; gap:11px; align-items:flex-start; }
 .feature-icon-wrap { flex-shrink:0; width:30px; height:30px; display:flex; align-items:center; justify-content:center; margin-top:1px; }
-.feature-icon-wrap svg { width:26px; height:26px; }
-.feature-title { font-size:13px; font-weight:800; color:#111; line-height:1.3; margin-bottom:6px; }
-.feature-desc { font-size:11.5px; color:#555; line-height:1.5; }
+.feature-icon-wrap svg { width:25px; height:25px; }
+.feature-title { font-size:12.5px; font-weight:800; color:var(--ink); line-height:1.3; margin-bottom:6px; }
+.feature-desc { font-size:11px; color:var(--muted); line-height:1.5; }
 
 /* footer */
-.footer { padding:12px 44px; display:flex; justify-content:space-between; align-items:center; border-top:1px solid #eee; background:#fff; }
-.footer-copy { font-size:10.5px; color:#bbb; }
+.footer { padding:13px 46px; display:flex; justify-content:space-between; align-items:center; background:#fff; }
+.footer-copy { font-size:10.5px; color:#b6bacb; }
 .ae-block { text-align:right; }
 .ae-name { font-size:12.5px; font-weight:700; color:#222; }
 .ae-title { font-size:11px; color:#777; margin-top:1px; }
-.ae-contact { font-size:11px; color:#0052F2; margin-top:2px; }
+.ae-contact { font-size:11px; color:var(--blue); margin-top:2px; }
 
 @media print {
   * { -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; }
   @page { size:letter portrait; margin:0; }
   html, body { background:#fff !important; padding:0 !important; margin:0 !important; display:block !important; }
-  .page { width:850px !important; box-shadow:none !important; margin:0 auto !important; }
+  .page { width:860px !important; box-shadow:none !important; margin:0 auto !important; }
   .toolbar, input[type=file] { display:none !important; }
   [contenteditable] { background:none !important; box-shadow:none !important; }
-  .upload-overlay { display:none !important; }
+  .upload-overlay, .viz-overlay { display:none !important; }
+  .section, .viz { break-inside:avoid; }
 }
 </style>
 </head>
 <body>
 
 <input type="file" id="upload-amp-logo" accept="image/*">
+<input type="file" id="upload-viz-0" accept="image/*">
+<input type="file" id="upload-viz-1" accept="image/*">
 
 <div class="toolbar">
   <span class="toolbar-item">✏️ Click any text to edit</span>
   <div class="toolbar-sep"></div>
-  <span class="toolbar-item">🖼️ Hover logo to replace</span>
+  <span class="toolbar-item">🖼️ Hover images to replace</span>
   <div class="toolbar-sep"></div>
   <button class="toolbar-item" id="save-status" onclick="saveEdits()">💾 Save edits</button>
   <div class="toolbar-sep"></div>
@@ -99,10 +144,10 @@ tbody tr:last-child td { border-bottom:none; }
 
   <div class="header">
     <div class="shapes-wrap">
-      <svg viewBox="0 0 360 230" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="180" y="-50" width="150" height="150" rx="22" fill="url(#s1)" opacity="0.95" transform="rotate(18 180 -50)"/>
-        <rect x="255" y="25" width="125" height="125" rx="18" fill="url(#s2)" opacity="0.8" transform="rotate(-8 255 25)"/>
-        <rect x="125" y="12" width="86" height="86" rx="14" fill="url(#s3)" opacity="0.6" transform="rotate(30 125 12)"/>
+      <svg viewBox="0 0 380 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="190" y="-52" width="150" height="150" rx="22" fill="url(#s1)" opacity="0.95" transform="rotate(18 190 -52)"/>
+        <rect x="266" y="24" width="126" height="126" rx="18" fill="url(#s2)" opacity="0.8" transform="rotate(-8 266 24)"/>
+        <rect x="132" y="14" width="86" height="86" rx="14" fill="url(#s3)" opacity="0.6" transform="rotate(30 132 14)"/>
         <defs>
           <linearGradient id="s1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#4083FF"/><stop offset="100%" stop-color="#0033C4"/></linearGradient>
           <linearGradient id="s2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#6980FF"/><stop offset="100%" stop-color="#0052F2"/></linearGradient>
@@ -119,21 +164,20 @@ tbody tr:last-child td { border-bottom:none; }
       <span class="vertical-label" contenteditable="true" data-key="partner">CVS</span>
     </div>
     <h1 contenteditable="true" data-key="headline">Adobe Analytics,<br>Translated to Amplitude</h1>
+    <p class="sub" contenteditable="true" data-key="sub">A working reference for CVS's MarTech &amp; Digital Analytics teams — mapping segments, calculated metrics, eVars, props, and traffic KPIs to how they work in Amplitude.</p>
   </div>
 
-  <div class="body">
-    <p class="lead" contenteditable="true" data-key="lead">A working reference for CVS's MarTech and Digital Analytics teams: every core Adobe Analytics concept — segments, calculated metrics, eVars, props, success events, and traffic KPIs — mapped to how it works in Amplitude.</p>
-    <p class="para" contenteditable="true" data-key="para">Amplitude uses one flexible, event-based data model. Instead of provisioning a fixed set of variables in the UI before you can report, events and their properties are defined in your governed Tracking Plan and captured dynamically — so the team spends its time analyzing, not administering variable slots.</p>
-
+  <!-- MAPPING -->
+  <div class="section">
+    <div class="eyebrow" contenteditable="true" data-key="eb1">Quick reference</div>
     <div class="map-card">
-      <div class="map-title" contenteditable="true" data-key="map-title">Adobe Analytics → Amplitude quick reference</div>
-      <table>
+      <table class="map">
         <thead><tr><th>Adobe Analytics</th><th>Amplitude</th><th>Notes</th></tr></thead>
         <tbody>
         <tr>
           <td class="c-adobe" contenteditable="true">Unique Visitors</td>
           <td class="c-amp" contenteditable="true">Unique users</td>
-          <td class="c-note" contenteditable="true">Distinct Amplitude ID (derived from User ID + Device ID count)</td>
+          <td class="c-note" contenteditable="true">Distinct Amplitude ID (User ID + Device ID count)</td>
         </tr>
         <tr>
           <td class="c-adobe" contenteditable="true">Visits</td>
@@ -143,37 +187,37 @@ tbody tr:last-child td { border-bottom:none; }
         <tr>
           <td class="c-adobe" contenteditable="true">Hits / server calls</td>
           <td class="c-amp" contenteditable="true">Events</td>
-          <td class="c-note" contenteditable="true">Every tracked action is an event — the core unit of the model</td>
+          <td class="c-note" contenteditable="true">Every tracked action is an event — the core unit</td>
         </tr>
         <tr>
           <td class="c-adobe" contenteditable="true">Page Views</td>
           <td class="c-amp" contenteditable="true">PageView event</td>
-          <td class="c-note" contenteditable="true">Auto-captured by the Browser SDK; pass from any source</td>
+          <td class="c-note" contenteditable="true">Auto-captured by the Browser SDK</td>
         </tr>
         <tr>
           <td class="c-adobe" contenteditable="true">Instances</td>
-          <td class="c-amp" contenteditable="true">Count (measure)</td>
+          <td class="c-amp" contenteditable="true">Count / Totals</td>
           <td class="c-note" contenteditable="true">&ldquo;Totals&rdquo; measure on any event</td>
         </tr>
         <tr>
-          <td class="c-adobe" contenteditable="true">eVars (conversion variables)</td>
-          <td class="c-amp" contenteditable="true">User or Event Properties</td>
-          <td class="c-note" contenteditable="true">Use User Properties for values that persist like eVars; Event Properties for per-event values</td>
+          <td class="c-adobe" contenteditable="true">eVars (conversion vars)</td>
+          <td class="c-amp" contenteditable="true">User / Event Properties</td>
+          <td class="c-note" contenteditable="true">User Properties persist like eVars; Event Properties are per-event</td>
         </tr>
         <tr>
-          <td class="c-adobe" contenteditable="true">props (traffic variables)</td>
+          <td class="c-adobe" contenteditable="true">props (traffic vars)</td>
           <td class="c-amp" contenteditable="true">Event Properties</td>
           <td class="c-note" contenteditable="true">Captured dynamically with the event</td>
         </tr>
         <tr>
           <td class="c-adobe" contenteditable="true">Success events</td>
           <td class="c-amp" contenteditable="true">Events</td>
-          <td class="c-note" contenteditable="true">Numeric / currency success events → numeric &amp; revenue event properties (prefixed $)</td>
+          <td class="c-note" contenteditable="true">Numeric / currency → numeric &amp; $ revenue event properties</td>
         </tr>
         <tr>
           <td class="c-adobe" contenteditable="true">Custom conversion</td>
           <td class="c-amp" contenteditable="true">Funnel Analysis</td>
-          <td class="c-note" contenteditable="true">Build a funnel on any event(s) — no pre-defined success event to provision</td>
+          <td class="c-note" contenteditable="true">Build a funnel on any event — no success event to provision</td>
         </tr>
         <tr>
           <td class="c-adobe" contenteditable="true">Segments</td>
@@ -183,40 +227,116 @@ tbody tr:last-child td { border-bottom:none; }
         <tr>
           <td class="c-adobe" contenteditable="true">Calculated Metrics</td>
           <td class="c-amp" contenteditable="true">Formula metrics + Derived Properties</td>
-          <td class="c-note" contenteditable="true">Math, string &amp; regex functions computed at query time</td>
+          <td class="c-note" contenteditable="true">Math, string &amp; regex, computed at query time</td>
         </tr>
         <tr>
           <td class="c-adobe" contenteditable="true">Analysis Workspace</td>
           <td class="c-amp" contenteditable="true">Data Tables</td>
-          <td class="c-note" contenteditable="true">Multi-dimensional analysis across events, metrics &amp; properties</td>
+          <td class="c-note" contenteditable="true">Multi-dimensional analysis across events &amp; properties</td>
         </tr>
         </tbody>
       </table>
     </div>
   </div>
 
-  <div class="together">
-    <div class="together-title" contenteditable="true" data-key="together-title">How your Adobe workflows map to Amplitude</div>
+  <!-- VISUALIZATION EXAMPLES -->
+  <div class="section">
+    <div class="eyebrow" contenteditable="true" data-key="eb2">Workspace visualization examples</div>
+    <div class="viz-grid">
+
+      <div class="viz" id="viz-0" onclick="document.getElementById('upload-viz-0').click()" title="Click to replace with a real screenshot">
+        <div class="viz-body">
+          <div class="viz-cap"><b>Data Tables</b> — multi-dimensional (Analysis Workspace equivalent)</div>
+          <div style="margin-top:8px;">
+            <table class="mtbl">
+              <thead><tr><th>Segment</th><th>Unique users</th><th>Conversion</th></tr></thead>
+              <tbody>
+                <tr><td class="seg">Pharmacy app</td><td><span class="barbg"><span class="bar" style="width:60px"></span></span>842K</td><td class="pct">31.4%</td></tr>
+                <tr><td class="seg">CVS.com web</td><td><span class="barbg"><span class="bar" style="width:44px"></span></span>610K</td><td class="pct">24.1%</td></tr>
+                <tr><td class="seg">MinuteClinic</td><td><span class="barbg"><span class="bar" style="width:22px"></span></span>218K</td><td class="pct">18.7%</td></tr>
+                <tr><td class="seg">ExtraCare</td><td><span class="barbg"><span class="bar" style="width:33px"></span></span>402K</td><td class="pct">27.9%</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <img class="viz-img" id="viz-0-img" alt="">
+        <div class="viz-overlay"><span>Replace with screenshot</span></div>
+      </div>
+
+      <div class="viz" id="viz-1" onclick="document.getElementById('upload-viz-1').click()" title="Click to replace with a real screenshot">
+        <div class="viz-body">
+          <div class="viz-cap"><b>Segmentation</b> — include / exclude &amp; regex containers</div>
+          <div style="margin-top:10px;">
+            <div class="filt-row"><span class="tag-inc">Include</span></div>
+            <div class="filt-row"><span class="chip k">Page URL</span><span class="chip o">contains</span><span class="chip v">/pharmacy</span></div>
+            <div class="filt-row"><span class="chip k">Page URL</span><span class="chip o">glob match</span><span class="chip v">*/schedule/*</span></div>
+            <div class="filt-row" style="margin-top:9px;"><span class="tag-exc">Exclude</span></div>
+            <div class="filt-row"><span class="chip k">User type</span><span class="chip o">is</span><span class="chip v">internal</span></div>
+            <div class="filt-row" style="margin-top:9px;"><span class="chip k" style="background:#f3ecff;color:#5b21b6;">Derived</span><span class="chip re">REGEXEXTRACT(url, "rx=([0-9]+)")</span></div>
+          </div>
+        </div>
+        <img class="viz-img" id="viz-1-img" alt="">
+        <div class="viz-overlay"><span>Replace with screenshot</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- LIMITS -->
+  <div class="section">
+    <div class="eyebrow" contenteditable="true" data-key="eb3">Limits to review — segments, dimensions &amp; instrumentation</div>
+    <div class="tiles">
+      <div class="tile">
+        <div class="tile-num" contenteditable="true">2,000</div>
+        <div class="tile-label" contenteditable="true">event types / project</div>
+      </div>
+      <div class="tile">
+        <div class="tile-num" contenteditable="true">2,000</div>
+        <div class="tile-label" contenteditable="true">event properties / project</div>
+      </div>
+      <div class="tile">
+        <div class="tile-num" contenteditable="true">1,000</div>
+        <div class="tile-label" contenteditable="true">user properties / project</div>
+      </div>
+      <div class="tile">
+        <div class="tile-num" contenteditable="true">10</div>
+        <div class="tile-label" contenteditable="true">segments per chart (30 in breakdown)</div>
+      </div>
+      <div class="tile">
+        <div class="tile-num" contenteditable="true">5</div>
+        <div class="tile-label" contenteditable="true">group-bys per Data Table</div>
+      </div>
+      <div class="tile">
+        <div class="tile-num" contenteditable="true">100 / 500</div>
+        <div class="tile-label" contenteditable="true">single / double group-by display</div>
+      </div>
+    </div>
+    <p class="limit-note" contenteditable="true" data-key="limit-note">Unlike Adobe's fixed eVar / prop / success-event slots, these are <b>generous per-project ceilings</b>, not variables you pre-provision — and there's <b>no cap on properties per event</b>. Group-by results prune to the top values for performance (100 single / 500 double); Data Tables allow up to 5 top-level group-bys. Source: Amplitude <i>Limits &amp; quotas</i> and <i>Group-bys</i> docs.</p>
+  </div>
+
+  <!-- CONCEPTS -->
+  <div class="section" style="background:#f7f8fc;">
+    <div class="eyebrow" contenteditable="true" data-key="eb4">How your Adobe workflows map</div>
     <div class="features-grid">
       <div class="feature">
         <div class="feature-icon-wrap"><svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 6h20l-8 9v7l-4-2v-5L4 6z" stroke="#0052F2" stroke-width="1.6" stroke-linejoin="round" fill="none"/></svg></div>
         <div class="feature-text">
           <div class="feature-title" contenteditable="true">Segments, metrics &amp; containers</div>
-          <div class="feature-desc" contenteditable="true">Adobe Segments become Amplitude <b>Cohorts</b> and inline segments. Build include / exclude rules with <b>is</b>, <b>contains</b>, and <b>glob</b> wildcards — and full <b>regex</b> (REGEXEXTRACT / REGEXREPLACE) via <b>Derived Properties</b>. Calculated Metrics map to <b>Formula metrics</b>; Analysis Workspace maps to <b>Data Tables</b>.</div>
+          <div class="feature-desc" contenteditable="true">Segments → <b>Cohorts</b> + inline segments. Include / exclude with <b>is</b>, <b>contains</b>, <b>glob</b> wildcards, and full <b>regex</b> (REGEXEXTRACT / REGEXREPLACE) via <b>Derived Properties</b>. Calculated Metrics → <b>Formula metrics</b>; Analysis Workspace → <b>Data Tables</b>.</div>
         </div>
       </div>
       <div class="feature">
         <div class="feature-icon-wrap"><svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="4" width="7" height="7" rx="1.5" stroke="#0052F2" stroke-width="1.6"/><rect x="17" y="4" width="7" height="7" rx="1.5" stroke="#0052F2" stroke-width="1.6"/><rect x="4" y="17" width="7" height="7" rx="1.5" stroke="#0052F2" stroke-width="1.6"/><rect x="17" y="17" width="7" height="7" rx="1.5" stroke="#0052F2" stroke-width="1.6"/></svg></div>
         <div class="feature-text">
-          <div class="feature-title" contenteditable="true">Your data model, without the slots</div>
-          <div class="feature-desc" contenteditable="true">Adobe caps each report suite to a <b>fixed number of eVars, props, and success events</b> you must pre-configure. Amplitude has no such slots — events and properties are defined once in your governed <b>Tracking Plan</b> and captured dynamically, so they're effectively unlimited. (Note: each derived property allows up to 10 property references.)</div>
+          <div class="feature-title" contenteditable="true">Data model without the slots</div>
+          <div class="feature-desc" contenteditable="true">No rigid eVar / prop / success-event slots to provision. Events &amp; properties live in one governed <b>Tracking Plan</b>, captured dynamically up to generous per-project ceilings (2,000 / 2,000 / 1,000). No cap on properties per event.</div>
         </div>
       </div>
       <div class="feature">
         <div class="feature-icon-wrap"><svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 24V4" stroke="#0052F2" stroke-width="1.6" stroke-linecap="round"/><path d="M4 24h20" stroke="#0052F2" stroke-width="1.6" stroke-linecap="round"/><path d="M7 18l5-5 4 3 7-8" stroke="#0052F2" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 8h3v3" stroke="#0052F2" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         <div class="feature-text">
           <div class="feature-title" contenteditable="true">Traffic KPIs &amp; conversion</div>
-          <div class="feature-desc" contenteditable="true">Unique Visitors → <b>Unique users</b>, Visits → <b>Sessions</b>, Hits → <b>Events</b>, Page Views → <b>PageView</b>, Bounce Rate → the <b>Bounce Rate</b> session metric. Track any conversion by building a <b>Funnel</b> on the events that matter — no success-event provisioning required.</div>
+          <div class="feature-desc" contenteditable="true">Unique Visitors → <b>Unique users</b>, Visits → <b>Sessions</b>, Hits → <b>Events</b>, Page Views → <b>PageView</b>, Bounce Rate → the <b>Bounce Rate</b> session metric. Any conversion = a <b>Funnel</b> on the events that matter.</div>
         </div>
       </div>
     </div>
@@ -234,13 +354,23 @@ tbody tr:last-child td { border-bottom:none; }
 </div>
 
 <script>
-const STORAGE_KEY = 'cvs-adobe-map-edits';
-function collect(){ const d={}; document.querySelectorAll('[contenteditable]').forEach((el,i)=>{ const k=el.dataset.key||('n'+i); d[k]=el.innerHTML; }); const l=document.getElementById('amp-logo-display').querySelector('img'); if(l && !l.src.startsWith('data:image/svg+xml;base64,PHN')) d['__amplogo']=l.src; return d; }
+const STORAGE_KEY = 'cvs-adobe-map-v2-edits';
+function collect(){ const d={}; document.querySelectorAll('[contenteditable]').forEach((el,i)=>{ const k=el.dataset.key||('n'+i); d[k]=el.innerHTML; });
+  const l=document.getElementById('amp-logo-display').querySelector('img'); if(l && !l.src.startsWith('data:image/svg+xml;base64,PHN')) d['__amplogo']=l.src;
+  ['viz-0','viz-1'].forEach(id=>{ const im=document.getElementById(id+'-img'); if(im && im.style.display==='block') d['__'+id]=im.src; });
+  return d; }
 function saveEdits(){ localStorage.setItem(STORAGE_KEY, JSON.stringify(collect())); const b=document.getElementById('save-status'); b.textContent='✓ Saved'; setTimeout(()=>b.textContent='💾 Save edits',1500); }
-function restore(){ let d; try{ d=JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}'); }catch(e){ return; } document.querySelectorAll('[contenteditable]').forEach((el,i)=>{ const k=el.dataset.key||('n'+i); if(d[k]!==undefined) el.innerHTML=d[k]; }); if(d['__amplogo']) document.getElementById('amp-logo-display').innerHTML='<img src="'+d['__amplogo']+'" class="amp-logo-img" alt="Amplitude">'; }
+function restore(){ let d; try{ d=JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}'); }catch(e){ return; }
+  document.querySelectorAll('[contenteditable]').forEach((el,i)=>{ const k=el.dataset.key||('n'+i); if(d[k]!==undefined) el.innerHTML=d[k]; });
+  if(d['__amplogo']) document.getElementById('amp-logo-display').innerHTML='<img src="'+d['__amplogo']+'" class="amp-logo-img" alt="Amplitude">';
+  ['viz-0','viz-1'].forEach(id=>{ if(d['__'+id]) showViz(id, d['__'+id]); }); }
+function showViz(id, url){ const card=document.getElementById(id); const im=document.getElementById(id+'-img'); im.src=url; im.style.display='block'; card.querySelectorAll('.viz-body').forEach(e=>e.style.display='none'); }
 function resetPage(){ if(!confirm('Reset all edits back to defaults?')) return; localStorage.removeItem(STORAGE_KEY); location.reload(); }
 function printPDF(){ if(document.activeElement) document.activeElement.blur(); const p=document.querySelector('.page'); p.style.zoom=''; void p.offsetHeight; p.style.zoom=Math.min(1075/p.scrollHeight,1); requestAnimationFrame(()=>requestAnimationFrame(()=>{ window.print(); const r=()=>p.style.zoom=''; window.addEventListener('afterprint',r,{once:true}); setTimeout(r,3000); })); }
-document.getElementById('upload-amp-logo').addEventListener('change', function(){ if(!this.files[0]) return; const r=new FileReader(); r.onload=e=>{ document.getElementById('amp-logo-display').innerHTML='<img src="'+e.target.result+'" class="amp-logo-img" alt="Amplitude">'; saveEdits(); }; r.readAsDataURL(this.files[0]); this.value=''; });
+function wireUpload(inputId, cb){ document.getElementById(inputId).addEventListener('change', function(){ if(!this.files[0]) return; const r=new FileReader(); r.onload=e=>{ cb(e.target.result); saveEdits(); }; r.readAsDataURL(this.files[0]); this.value=''; }); }
+wireUpload('upload-amp-logo', url=>{ document.getElementById('amp-logo-display').innerHTML='<img src="'+url+'" class="amp-logo-img" alt="Amplitude">'; });
+wireUpload('upload-viz-0', url=>showViz('viz-0', url));
+wireUpload('upload-viz-1', url=>showViz('viz-1', url));
 document.addEventListener('input', saveEdits);
 restore();
 </script>
