@@ -36,7 +36,7 @@ input[type=file] { display:none; }
 .header h1 { color:#fff; font-size:32px; font-weight:900; line-height:1.12; letter-spacing:-0.8px; max-width:600px; position:relative; z-index:3; }
 .header .sub { color:rgba(255,255,255,0.66); font-size:12.5px; line-height:1.55; max-width:530px; margin-top:11px; position:relative; z-index:3; }
 
-.body { padding:26px 44px 8px; flex:1; }
+.body { padding:28px 44px 22px; }
 
 /* intro (bold lead + paragraph, like template) */
 .lead { font-size:17px; font-weight:800; color:var(--ink); line-height:1.35; letter-spacing:-0.2px; margin-bottom:12px; }
@@ -67,8 +67,8 @@ input[type=file] { display:none; }
 .tag-exc { font-size:8px; font-weight:800; letter-spacing:.4px; text-transform:uppercase; color:#b4530f; }
 
 /* "Better Together" band + 3 columns (like template) */
-.together { background:#f4f6fb; border-top:1px solid var(--line); padding:24px 44px 28px; }
-.together-title { text-align:center; font-size:19px; font-weight:900; color:var(--ink); letter-spacing:-0.4px; margin-bottom:22px; }
+.together { background:#f4f6fb; border-top:1px solid var(--line); padding:30px 44px; flex:1; display:flex; flex-direction:column; justify-content:center; }
+.together-title { text-align:center; font-size:19px; font-weight:900; color:var(--ink); letter-spacing:-0.4px; margin-bottom:26px; }
 .features-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:26px; }
 .feature-icon-wrap { width:34px; height:34px; display:flex; align-items:center; justify-content:center; margin-bottom:10px; }
 .feature-icon-wrap svg { width:28px; height:28px; }
@@ -137,14 +137,14 @@ input[type=file] { display:none; }
         <div class="upload-overlay"><span>Replace</span></div>
       </div>
     </div>
-    <h1 contenteditable="true" data-key="headline">Beyond Page Views:<br>Analytics for the Whole CVS Journey</h1>
-    <p class="sub" contenteditable="true" data-key="sub">Amplitude gives CVS's analytics teams answers Adobe can't — behavioral customer journeys, self-serve exploration, and the tools to act, all in one platform.</p>
+    <h1 contenteditable="true" data-key="headline">Analytics for the Whole<br>CVS Customer Journey</h1>
+    <p class="sub" contenteditable="true" data-key="sub">Amplitude gives CVS's analytics teams behavioral customer journeys, self-serve exploration, and the tools to act — all in one connected platform.</p>
   </div>
 
   <!-- BODY: intro + central visual -->
   <div class="body">
-    <p class="lead" contenteditable="true" data-key="lead">Adobe tells you what happened on a page. Amplitude shows you the whole customer journey — and lets any CVS team act on it.</p>
-    <p class="para" contenteditable="true" data-key="para">That means following a member from web to app to pharmacy as one journey, building segments and metrics on the fly without provisioning variables, and moving straight from insight to experiments, replays, and campaigns — no BI ticket, no re-tagging, no waiting.</p>
+    <p class="lead" contenteditable="true" data-key="lead">Amplitude goes beyond page-level reporting to the full customer journey — and lets any CVS team act on what they find.</p>
+    <p class="para" contenteditable="true" data-key="para">That means following a member from web to app to pharmacy as one journey, building segments and metrics on the fly without provisioning variables, and moving straight from insight to experiments, replays, and campaigns — all in one place, without waiting on a BI ticket.</p>
 
     <div class="eyebrow" contenteditable="true" data-key="eb">What it looks like in Amplitude</div>
     <div class="viz-block">
@@ -174,12 +174,12 @@ input[type=file] { display:none; }
 
   <!-- BETTER TOGETHER band + 3 columns -->
   <div class="together">
-    <div class="together-title" contenteditable="true" data-key="together-title">What Amplitude does that Adobe can't</div>
+    <div class="together-title" contenteditable="true" data-key="together-title">Why CVS teams choose Amplitude</div>
     <div class="features-grid">
         <div class="feature">
           <div class="feature-icon-wrap"><svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 6h20l-8 9v7l-4-2v-5L4 6z" stroke="#0052F2" stroke-width="1.7" stroke-linejoin="round" fill="none"/></svg></div>
-          <div class="feature-title" contenteditable="true">Follow the journey, not just the page</div>
-          <div class="feature-desc" contenteditable="true">Adobe is built around pages and visits. Amplitude is built around <b>people</b> — see a member's time-ordered journey across pharmacy, web, and app, build a <b>funnel or path on any action</b>, and group users by what they actually did with <b>behavioral cohorts</b>.</div>
+          <div class="feature-title" contenteditable="true">See the whole customer journey</div>
+          <div class="feature-desc" contenteditable="true">Amplitude is built around <b>people, not just pages</b> — follow a member's journey across pharmacy, web, and app, build a <b>funnel or path on any action</b>, and group users by what they actually did with <b>behavioral cohorts</b>.</div>
         </div>
         <div class="feature">
           <div class="feature-icon-wrap"><svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14 2v5M14 21v5M2 14h5M21 14h5M6 6l3 3M22 22l-3-3M22 6l-3 3M6 22l3-3" stroke="#0052F2" stroke-width="1.7" stroke-linecap="round"/><circle cx="14" cy="14" r="4.5" stroke="#0052F2" stroke-width="1.7"/></svg></div>
@@ -189,7 +189,7 @@ input[type=file] { display:none; }
         <div class="feature">
           <div class="feature-icon-wrap"><svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="4" width="22" height="15" rx="2.5" stroke="#0052F2" stroke-width="1.7"/><path d="M11 9l5 3-5 3V9z" fill="#0052F2"/><path d="M9 24h10" stroke="#0052F2" stroke-width="1.7" stroke-linecap="round"/></svg></div>
           <div class="feature-title" contenteditable="true">Analyze and act in one platform</div>
-          <div class="feature-desc" contenteditable="true">Adobe Analytics stops at reporting. Amplitude adds <b>Session Replay</b>, <b>Experimentation</b>, <b>Guides &amp; Surveys</b>, and <b>AI agents</b> — so CVS teams don't just measure the customer journey, they improve it, without stitching tools together.</div>
+          <div class="feature-desc" contenteditable="true">Go beyond reporting with <b>Session Replay</b>, <b>Experimentation</b>, <b>Guides &amp; Surveys</b>, and <b>AI agents</b> — so CVS teams don't just measure the customer journey, they improve it, without stitching separate tools together.</div>
         </div>
     </div>
   </div>
