@@ -56,9 +56,10 @@ input[type=file] { display:none; }
 .jnode { display:flex; flex-direction:column; align-items:center; gap:9px; flex:1 1 0; }
 .jicon { width:50px; height:50px; border-radius:50%; background:#fff; border:1px solid var(--line); display:flex; align-items:center; justify-content:center; box-shadow:0 2px 8px rgba(10,15,40,0.05); }
 .jicon svg { width:24px; height:24px; }
-.jlabel { font-size:12px; font-weight:700; color:var(--ink); text-align:center; line-height:1.25; }
-.jarrow { color:#c3c8da; font-size:18px; flex:0 0 auto; margin-top:16px; }
-.journey-cap { font-size:12.5px; color:var(--muted); line-height:1.65; text-align:center; max-width:660px; margin:22px auto 0; }
+.jlabel { font-size:12.5px; font-weight:700; color:var(--ink); text-align:center; line-height:1.25; }
+.jsub { font-size:10px; color:var(--muted); text-align:center; line-height:1.3; margin-top:2px; }
+.jarrow { color:#c3c8da; font-size:18px; flex:0 0 auto; margin-top:18px; }
+.journey-cap { font-size:12.5px; color:var(--muted); line-height:1.65; text-align:center; max-width:660px; margin:20px auto 0; padding-top:18px; border-top:1px solid var(--line); }
 .mtbl { width:100%; border-collapse:collapse; font-size:10px; }
 .mtbl th { text-align:left; color:#9198ad; font-weight:700; padding:3px 5px; border-bottom:1px solid #eef0f6; text-transform:uppercase; letter-spacing:.4px; font-size:8px; }
 .mtbl td { padding:4px 5px; border-bottom:1px solid #f4f5fa; color:#3a4058; }
@@ -78,8 +79,11 @@ input[type=file] { display:none; }
 .tag-exc { font-size:8px; font-weight:800; letter-spacing:.4px; text-transform:uppercase; color:#b4530f; }
 
 /* "Better Together" band + 3 columns (like template) */
-.together { background:#f4f6fb; border-top:1px solid var(--line); padding:40px 44px 44px; flex:1; display:flex; flex-direction:column; justify-content:center; }
-.together-title { text-align:center; font-size:20px; font-weight:900; color:var(--ink); letter-spacing:-0.4px; margin-bottom:30px; }
+.together { background:#f4f6fb; border-top:1px solid var(--line); padding:38px 44px 34px; flex:1; display:flex; flex-direction:column; justify-content:space-evenly; }
+.together-title { text-align:center; font-size:20px; font-weight:900; color:var(--ink); letter-spacing:-0.4px; }
+.trust { text-align:center; }
+.trust-label { font-size:9.5px; font-weight:800; letter-spacing:1.6px; text-transform:uppercase; color:#9aa0b5; margin-bottom:10px; }
+.trust-names { font-size:13px; font-weight:800; color:#8a90a6; letter-spacing:0.3px; }
 .features-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:34px; }
 .feature-icon-wrap { width:38px; height:38px; display:flex; align-items:center; justify-content:center; margin-bottom:14px; }
 .feature-icon-wrap svg { width:30px; height:30px; }
@@ -160,13 +164,13 @@ input[type=file] { display:none; }
     <div class="eyebrow" contenteditable="true" data-key="eb">Illustrative example — one connected view of the CVS member</div>
     <div class="journey-card">
       <div class="journey">
-        <div class="jnode"><div class="jicon"><svg viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="#0052F2" stroke-width="1.7"/><path d="M16 16l5 5" stroke="#0052F2" stroke-width="1.7" stroke-linecap="round"/></svg></div><div class="jlabel" contenteditable="true">Web &amp; search</div></div>
+        <div class="jnode"><div class="jicon"><svg viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="#0052F2" stroke-width="1.7"/><path d="M16 16l5 5" stroke="#0052F2" stroke-width="1.7" stroke-linecap="round"/></svg></div><div class="jlabel" contenteditable="true">Web &amp; search</div><div class="jsub" contenteditable="true">where members start</div></div>
         <div class="jarrow">→</div>
-        <div class="jnode"><div class="jicon"><svg viewBox="0 0 24 24" fill="none"><rect x="7" y="2.5" width="10" height="19" rx="2.5" stroke="#0052F2" stroke-width="1.7"/><path d="M11 18.5h2" stroke="#0052F2" stroke-width="1.7" stroke-linecap="round"/></svg></div><div class="jlabel" contenteditable="true">CVS app</div></div>
+        <div class="jnode"><div class="jicon"><svg viewBox="0 0 24 24" fill="none"><rect x="7" y="2.5" width="10" height="19" rx="2.5" stroke="#0052F2" stroke-width="1.7"/><path d="M11 18.5h2" stroke="#0052F2" stroke-width="1.7" stroke-linecap="round"/></svg></div><div class="jlabel" contenteditable="true">CVS app</div><div class="jsub" contenteditable="true">how they engage</div></div>
         <div class="jarrow">→</div>
-        <div class="jnode"><div class="jicon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 4v6M9 7h6" stroke="#0052F2" stroke-width="1.7" stroke-linecap="round"/><rect x="4.5" y="10" width="15" height="10" rx="2" stroke="#0052F2" stroke-width="1.7"/></svg></div><div class="jlabel" contenteditable="true">Pharmacy</div></div>
+        <div class="jnode"><div class="jicon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 4v6M9 7h6" stroke="#0052F2" stroke-width="1.7" stroke-linecap="round"/><rect x="4.5" y="10" width="15" height="10" rx="2" stroke="#0052F2" stroke-width="1.7"/></svg></div><div class="jlabel" contenteditable="true">Pharmacy</div><div class="jsub" contenteditable="true">where they convert</div></div>
         <div class="jarrow">→</div>
-        <div class="jnode"><div class="jicon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 20s-7-4.5-7-9.5A4 4 0 0112 8a4 4 0 017 2.5C19 15.5 12 20 12 20z" stroke="#0052F2" stroke-width="1.7" stroke-linejoin="round"/></svg></div><div class="jlabel" contenteditable="true">Refill &amp; ExtraCare</div></div>
+        <div class="jnode"><div class="jicon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 20s-7-4.5-7-9.5A4 4 0 0112 8a4 4 0 017 2.5C19 15.5 12 20 12 20z" stroke="#0052F2" stroke-width="1.7" stroke-linejoin="round"/></svg></div><div class="jlabel" contenteditable="true">Refill &amp; ExtraCare</div><div class="jsub" contenteditable="true">what keeps them coming back</div></div>
       </div>
       <div class="journey-cap" contenteditable="true" data-key="journey-cap">Amplitude unifies every touchpoint into a single view of the member — so CVS sees the whole journey, not isolated page views, and can act on what drives refills, appointments, and loyalty.</div>
     </div>
@@ -191,6 +195,10 @@ input[type=file] { display:none; }
           <div class="feature-title" contenteditable="true">Turn insight into action</div>
           <div class="feature-desc" contenteditable="true">Go beyond dashboards to <b>test, personalize, and improve</b> the experiences that drive refills, bookings, and loyalty — then measure the impact, all in one platform.</div>
         </div>
+    </div>
+    <div class="trust">
+      <div class="trust-label" contenteditable="true" data-key="trust-label">Trusted by healthcare &amp; retail leaders</div>
+      <div class="trust-names" contenteditable="true" data-key="trust-names">McKesson &nbsp;·&nbsp; Moderna &nbsp;·&nbsp; HEB &nbsp;·&nbsp; MyFitnessPal &nbsp;·&nbsp; Square</div>
     </div>
   </div>
 
