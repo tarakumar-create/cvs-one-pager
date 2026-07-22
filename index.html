@@ -2,17 +2,16 @@
 <html lang="en"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Adobe Analytics → Amplitude | CVS</title>
+<title>Amplitude × CVS — Adobe Analytics, Translated</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 * { margin:0; padding:0; box-sizing:border-box; }
-:root { --blue:#0052F2; --navy:#001A4F; --ink:#0b0b12; --muted:#5b6172; --line:#e7e9f2; --wash:#f6f7fb; --cvs:#cc0000; }
+:root { --blue:#0052F2; --navy:#001A4F; --ink:#0b0b12; --muted:#5b6172; --line:#e7e9f2; --wash:#f6f7fb; }
 body { font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif; background:#dfe2ea; min-height:100vh; display:flex; flex-direction:column; align-items:center; padding:78px 0 50px; color:var(--ink); }
-/* A4 page: 210 × 297mm ≈ 794 × 1123px @96dpi */
+/* A4 page 794 × 1123 @96dpi */
 .page { width:794px; min-height:1123px; background:#fff; box-shadow:0 12px 50px rgba(10,15,40,0.22); position:relative; display:flex; flex-direction:column; }
 input[type=file] { display:none; }
 
-/* toolbar */
 .toolbar { position:fixed; top:16px; left:50%; transform:translateX(-50%); background:var(--navy); display:flex; align-items:center; border-radius:24px; box-shadow:0 6px 24px rgba(0,0,0,0.35); z-index:9999; overflow:hidden; }
 .toolbar-item { padding:9px 15px; cursor:pointer; white-space:nowrap; display:flex; align-items:center; gap:6px; border:none; background:none; color:rgba(255,255,255,0.85); font-size:12px; font-family:inherit; }
 .toolbar-item:hover { background:rgba(255,255,255,0.12); }
@@ -21,56 +20,42 @@ input[type=file] { display:none; }
 [contenteditable]:hover { background:rgba(0,82,242,0.06); border-radius:3px; }
 [contenteditable]:focus { background:rgba(0,82,242,0.09); border-radius:3px; box-shadow:0 0 0 2px rgba(0,82,242,0.35); outline:none; }
 
-.eyebrow { font-size:9.5px; font-weight:800; letter-spacing:1.7px; text-transform:uppercase; color:var(--blue); margin-bottom:10px; }
-
-/* header */
-.header { background:radial-gradient(120% 150% at 88% -20%, #1a2fb0 0%, rgba(26,47,176,0) 55%), linear-gradient(135deg,#0a0a12 0%,#0d1024 100%); padding:22px 40px 20px; position:relative; overflow:hidden; }
-.shapes-wrap { position:absolute; top:0; right:0; width:340px; height:200px; z-index:1; pointer-events:none; }
+/* header (black, like template) */
+.header { background:radial-gradient(120% 150% at 88% -20%, #1a2fb0 0%, rgba(26,47,176,0) 55%), linear-gradient(135deg,#0a0a12 0%,#0d1024 100%); padding:24px 44px 30px; position:relative; overflow:hidden; }
+.shapes-wrap { position:absolute; top:0; right:0; width:360px; height:210px; z-index:1; pointer-events:none; }
 .shapes-wrap svg { width:100%; height:100%; }
-.logo-bar { display:flex; align-items:center; margin-bottom:20px; position:relative; z-index:3; }
+.logo-bar { display:flex; align-items:center; margin-bottom:22px; position:relative; z-index:3; }
 .logo-upload-wrap { position:relative; display:flex; align-items:center; cursor:pointer; }
 .logo-upload-wrap:hover .upload-overlay { opacity:1; }
 .upload-overlay { position:absolute; inset:-5px; background:rgba(92,107,192,0.25); border:1.5px dashed rgba(255,255,255,0.5); border-radius:6px; display:flex; align-items:center; justify-content:center; opacity:0; transition:opacity .15s; pointer-events:none; }
 .upload-overlay span { color:#fff; font-size:9px; font-weight:600; background:rgba(0,0,0,0.55); padding:2px 5px; border-radius:4px; white-space:nowrap; }
-.amp-logo-img { height:25px; width:auto; display:block; }
-.logo-divider { color:rgba(255,255,255,0.4); font-size:19px; font-weight:300; margin:0 12px; }
+.amp-logo-img { height:26px; width:auto; display:block; }
+.logo-divider { color:rgba(255,255,255,0.4); font-size:20px; font-weight:300; margin:0 13px; }
 .cvs-chip { background:#fff; border-radius:6px; padding:5px 9px; display:flex; align-items:center; }
-.cvs-logo-img { height:22px; width:auto; display:block; }
-.header h1 { color:#fff; font-size:29px; font-weight:900; line-height:1.13; letter-spacing:-0.8px; max-width:560px; position:relative; z-index:3; }
-.header .sub { color:rgba(255,255,255,0.66); font-size:12.5px; line-height:1.55; max-width:520px; margin-top:10px; position:relative; z-index:3; }
+.cvs-logo-img { height:23px; width:auto; display:block; }
+.header h1 { color:#fff; font-size:32px; font-weight:900; line-height:1.12; letter-spacing:-0.8px; max-width:600px; position:relative; z-index:3; }
+.header .sub { color:rgba(255,255,255,0.66); font-size:12.5px; line-height:1.55; max-width:530px; margin-top:11px; position:relative; z-index:3; }
 
-.body { padding:16px 40px; flex:1; }
-.block { margin-bottom:12px; }
+.body { padding:26px 44px 8px; flex:1; }
 
-/* mapping table */
-.map-card { border:1px solid var(--line); border-radius:11px; overflow:hidden; }
-table.map { width:100%; border-collapse:collapse; }
-table.map th, table.map td { text-align:left; padding:5.5px 14px; font-size:11px; vertical-align:top; line-height:1.35; }
-table.map thead th { font-size:9px; font-weight:800; letter-spacing:0.7px; text-transform:uppercase; color:#8990a6; background:var(--wash); border-bottom:1px solid var(--line); }
-table.map tbody tr:nth-child(even) { background:#fafbfe; }
-table.map tbody td { border-bottom:1px solid #f0f1f7; }
-table.map tbody tr:last-child td { border-bottom:none; }
-.c-adobe { color:#333; font-weight:600; width:24%; }
-.c-amp { color:var(--blue); font-weight:700; width:28%; }
-.c-note { color:var(--muted); width:48%; }
+/* intro (bold lead + paragraph, like template) */
+.lead { font-size:17px; font-weight:800; color:var(--ink); line-height:1.35; letter-spacing:-0.2px; margin-bottom:12px; }
+.para { font-size:13px; color:var(--muted); line-height:1.65; margin-bottom:22px; }
 
-/* lower two-column */
-.two-col { display:grid; grid-template-columns:1.05fr 0.95fr; gap:22px; }
-
-/* viz (editable in place) */
-.viz { border:1px solid var(--line); border-radius:11px; background:#fff; box-shadow:0 2px 10px rgba(10,15,40,0.04); padding:10px 13px 11px; margin-bottom:11px; }
+/* central visual block (editable, replaces the template's image) */
+.eyebrow { font-size:9.5px; font-weight:800; letter-spacing:1.7px; text-transform:uppercase; color:var(--blue); margin-bottom:10px; }
+.viz-block { border:1px solid var(--line); border-radius:12px; background:var(--wash); padding:16px; display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:26px; }
+.viz { background:#fff; border:1px solid var(--line); border-radius:9px; padding:11px 13px 13px; }
 .viz-cap { font-size:10px; font-weight:700; color:#6a7086; margin-bottom:8px; }
 .viz-cap b { color:var(--ink); }
-
 .mtbl { width:100%; border-collapse:collapse; font-size:10px; }
 .mtbl th { text-align:left; color:#9198ad; font-weight:700; padding:3px 5px; border-bottom:1px solid #eef0f6; text-transform:uppercase; letter-spacing:.4px; font-size:8px; }
 .mtbl td { padding:4px 5px; border-bottom:1px solid #f4f5fa; color:#3a4058; }
 .mtbl tr:last-child td { border-bottom:none; }
 .mtbl .seg { font-weight:600; color:#22263a; }
-.barbg { background:#eef1fb; border-radius:3px; height:7px; width:52px; display:inline-block; overflow:hidden; vertical-align:middle; margin-right:6px; }
+.barbg { background:#eef1fb; border-radius:3px; height:7px; width:46px; display:inline-block; overflow:hidden; vertical-align:middle; margin-right:6px; }
 .bar { height:7px; border-radius:3px; background:var(--blue); display:inline-block; vertical-align:middle; }
 .pct { color:var(--blue); font-weight:700; }
-
 .filt-row { display:flex; align-items:center; gap:6px; margin-bottom:6px; font-size:10px; flex-wrap:wrap; }
 .chip { padding:3px 8px; border-radius:6px; font-weight:700; font-size:9.5px; }
 .chip.k { background:#eef2fe; color:#0033b0; }
@@ -81,16 +66,16 @@ table.map tbody tr:last-child td { border-bottom:none; }
 .tag-inc { font-size:8px; font-weight:800; letter-spacing:.4px; text-transform:uppercase; color:#137a3e; }
 .tag-exc { font-size:8px; font-weight:800; letter-spacing:.4px; text-transform:uppercase; color:#b4530f; }
 
-/* limits tiles */
-.tiles { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
-.tile { background:var(--wash); border:1px solid var(--line); border-radius:9px; padding:10px 12px; }
-.tile-num { font-size:19px; font-weight:900; color:var(--blue); letter-spacing:-0.5px; line-height:1; }
-.tile-label { font-size:9.5px; color:var(--muted); margin-top:4px; line-height:1.3; }
-.limit-note { font-size:10px; color:var(--muted); margin-top:11px; line-height:1.5; }
-.limit-note b { color:var(--ink); }
+/* "Better Together" band + 3 columns (like template) */
+.together { background:#f4f6fb; border-top:1px solid var(--line); padding:24px 44px 28px; }
+.together-title { text-align:center; font-size:19px; font-weight:900; color:var(--ink); letter-spacing:-0.4px; margin-bottom:22px; }
+.features-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:26px; }
+.feature-icon-wrap { width:34px; height:34px; display:flex; align-items:center; justify-content:center; margin-bottom:10px; }
+.feature-icon-wrap svg { width:28px; height:28px; }
+.feature-title { font-size:13px; font-weight:800; color:var(--ink); line-height:1.3; margin-bottom:7px; }
+.feature-desc { font-size:11.5px; color:var(--muted); line-height:1.55; }
 
-/* footer */
-.footer { padding:12px 40px; display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--line); background:#fff; }
+.footer { padding:12px 44px; display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--line); background:#fff; }
 .footer-copy { font-size:10px; color:#b6bacb; }
 .ae-block { text-align:right; }
 .ae-name { font-size:12px; font-weight:700; color:#222; }
@@ -127,12 +112,13 @@ table.map tbody tr:last-child td { border-bottom:none; }
 
 <div class="page">
 
+  <!-- HEADER -->
   <div class="header">
     <div class="shapes-wrap">
-      <svg viewBox="0 0 340 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="170" y="-46" width="132" height="132" rx="20" fill="url(#s1)" opacity="0.95" transform="rotate(18 170 -46)"/>
-        <rect x="238" y="22" width="112" height="112" rx="16" fill="url(#s2)" opacity="0.8" transform="rotate(-8 238 22)"/>
-        <rect x="118" y="12" width="76" height="76" rx="12" fill="url(#s3)" opacity="0.6" transform="rotate(30 118 12)"/>
+      <svg viewBox="0 0 360 210" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="180" y="-48" width="140" height="140" rx="20" fill="url(#s1)" opacity="0.95" transform="rotate(18 180 -48)"/>
+        <rect x="252" y="24" width="118" height="118" rx="16" fill="url(#s2)" opacity="0.8" transform="rotate(-8 252 24)"/>
+        <rect x="124" y="12" width="80" height="80" rx="12" fill="url(#s3)" opacity="0.6" transform="rotate(30 124 12)"/>
         <defs>
           <linearGradient id="s1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#4083FF"/><stop offset="100%" stop-color="#0033C4"/></linearGradient>
           <linearGradient id="s2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#6980FF"/><stop offset="100%" stop-color="#0052F2"/></linearGradient>
@@ -152,149 +138,63 @@ table.map tbody tr:last-child td { border-bottom:none; }
       </div>
     </div>
     <h1 contenteditable="true" data-key="headline">Adobe Analytics,<br>Translated to Amplitude</h1>
-    <p class="sub" contenteditable="true" data-key="sub">A working reference for CVS's MarTech &amp; Digital Analytics teams — mapping segments, calculated metrics, eVars, props, and traffic KPIs to how they work in Amplitude.</p>
+    <p class="sub" contenteditable="true" data-key="sub">A field guide for CVS's MarTech &amp; Digital Analytics teams — every core Adobe concept, mapped to how it works in Amplitude.</p>
   </div>
 
+  <!-- BODY: intro + central visual -->
   <div class="body">
+    <p class="lead" contenteditable="true" data-key="lead">Everything your team relies on in Adobe Analytics has a home in Amplitude — with less to configure and more to explore.</p>
+    <p class="para" contenteditable="true" data-key="para">Segments, calculated metrics, eVars, props, success events, and traffic KPIs all map onto one flexible, event-based model. Instead of provisioning fixed variable slots before you can report, events and properties live in a governed Tracking Plan and are captured dynamically — so the team spends its time analyzing, not administering.</p>
 
-    <!-- MAPPING -->
-    <div class="block">
-      <div class="eyebrow" contenteditable="true" data-key="eb1">Adobe Analytics → Amplitude · direct comparison</div>
-      <div class="map-card">
-        <table class="map">
-          <thead><tr><th>Adobe Analytics</th><th>Amplitude</th><th>Notes</th></tr></thead>
+    <div class="eyebrow" contenteditable="true" data-key="eb">Workspace visualization examples</div>
+    <div class="viz-block">
+      <div class="viz">
+        <div class="viz-cap"><b>Data Tables</b> — multi-dimensional (Analysis Workspace equivalent)</div>
+        <table class="mtbl">
+          <thead><tr><th>Segment</th><th>Unique users</th><th>Conversion</th></tr></thead>
           <tbody>
-          <tr>
-            <td class="c-adobe" contenteditable="true">Unique Visitors</td>
-            <td class="c-amp" contenteditable="true">Unique users</td>
-            <td class="c-note" contenteditable="true">Distinct Amplitude ID (User ID + Device ID count)</td>
-          </tr>
-          <tr>
-            <td class="c-adobe" contenteditable="true">Visits</td>
-            <td class="c-amp" contenteditable="true">Sessions</td>
-            <td class="c-note" contenteditable="true">Configurable session definition; analyze in User Sessions</td>
-          </tr>
-          <tr>
-            <td class="c-adobe" contenteditable="true">Hits / server calls</td>
-            <td class="c-amp" contenteditable="true">Events</td>
-            <td class="c-note" contenteditable="true">Every tracked action is an event — the core unit</td>
-          </tr>
-          <tr>
-            <td class="c-adobe" contenteditable="true">Page Views</td>
-            <td class="c-amp" contenteditable="true">PageView event</td>
-            <td class="c-note" contenteditable="true">Auto-captured by the Browser SDK</td>
-          </tr>
-          <tr>
-            <td class="c-adobe" contenteditable="true">Bounce Rate</td>
-            <td class="c-amp" contenteditable="true">Bounce Rate</td>
-            <td class="c-note" contenteditable="true">Session metric in Data Tables</td>
-          </tr>
-          <tr>
-            <td class="c-adobe" contenteditable="true">eVars (conversion vars)</td>
-            <td class="c-amp" contenteditable="true">User / Event Properties</td>
-            <td class="c-note" contenteditable="true">User Properties persist like eVars; Event Properties are per-event</td>
-          </tr>
-          <tr>
-            <td class="c-adobe" contenteditable="true">props (traffic vars)</td>
-            <td class="c-amp" contenteditable="true">Event Properties</td>
-            <td class="c-note" contenteditable="true">Captured dynamically with the event</td>
-          </tr>
-          <tr>
-            <td class="c-adobe" contenteditable="true">Success events</td>
-            <td class="c-amp" contenteditable="true">Events</td>
-            <td class="c-note" contenteditable="true">Numeric / currency → numeric &amp; $ revenue event properties</td>
-          </tr>
-          <tr>
-            <td class="c-adobe" contenteditable="true">Custom conversion</td>
-            <td class="c-amp" contenteditable="true">Funnel Analysis</td>
-            <td class="c-note" contenteditable="true">Any event(s) — no success event to pre-provision</td>
-          </tr>
-          <tr>
-            <td class="c-adobe" contenteditable="true">Segments</td>
-            <td class="c-amp" contenteditable="true">Cohorts + Segmentation Module</td>
-            <td class="c-note" contenteditable="true">Behavioral &amp; property-based, saved and reusable</td>
-          </tr>
-          <tr>
-            <td class="c-adobe" contenteditable="true">Calculated Metrics</td>
-            <td class="c-amp" contenteditable="true">Formula metrics + Derived Properties</td>
-            <td class="c-note" contenteditable="true">Math, string &amp; regex, computed at query time</td>
-          </tr>
-          <tr>
-            <td class="c-adobe" contenteditable="true">Analysis Workspace</td>
-            <td class="c-amp" contenteditable="true">Data Tables</td>
-            <td class="c-note" contenteditable="true">Multi-dimensional analysis across events &amp; properties</td>
-          </tr>
+            <tr><td class="seg" contenteditable="true">Pharmacy app</td><td><span class="barbg"><span class="bar" style="width:44px"></span></span><span contenteditable="true">842K</span></td><td class="pct" contenteditable="true">31.4%</td></tr>
+            <tr><td class="seg" contenteditable="true">CVS.com web</td><td><span class="barbg"><span class="bar" style="width:32px"></span></span><span contenteditable="true">610K</span></td><td class="pct" contenteditable="true">24.1%</td></tr>
+            <tr><td class="seg" contenteditable="true">MinuteClinic</td><td><span class="barbg"><span class="bar" style="width:16px"></span></span><span contenteditable="true">218K</span></td><td class="pct" contenteditable="true">18.7%</td></tr>
+            <tr><td class="seg" contenteditable="true">ExtraCare</td><td><span class="barbg"><span class="bar" style="width:25px"></span></span><span contenteditable="true">402K</span></td><td class="pct" contenteditable="true">27.9%</td></tr>
           </tbody>
         </table>
       </div>
-    </div>
-
-    <!-- LOWER TWO-COLUMN -->
-    <div class="two-col">
-
-      <!-- viz -->
-      <div>
-        <div class="eyebrow" contenteditable="true" data-key="eb2">Workspace visualization examples</div>
-
-        <div class="viz">
-          <div class="viz-cap"><b>Data Tables</b> — multi-dimensional (Analysis Workspace equivalent)</div>
-          <table class="mtbl">
-            <thead><tr><th>Segment</th><th>Unique users</th><th>Conversion</th></tr></thead>
-            <tbody>
-              <tr><td class="seg" contenteditable="true">Pharmacy app</td><td><span class="barbg"><span class="bar" style="width:48px"></span></span><span contenteditable="true">842K</span></td><td class="pct" contenteditable="true">31.4%</td></tr>
-              <tr><td class="seg" contenteditable="true">CVS.com web</td><td><span class="barbg"><span class="bar" style="width:35px"></span></span><span contenteditable="true">610K</span></td><td class="pct" contenteditable="true">24.1%</td></tr>
-              <tr><td class="seg" contenteditable="true">MinuteClinic</td><td><span class="barbg"><span class="bar" style="width:18px"></span></span><span contenteditable="true">218K</span></td><td class="pct" contenteditable="true">18.7%</td></tr>
-              <tr><td class="seg" contenteditable="true">ExtraCare</td><td><span class="barbg"><span class="bar" style="width:27px"></span></span><span contenteditable="true">402K</span></td><td class="pct" contenteditable="true">27.9%</td></tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="viz">
-          <div class="viz-cap"><b>Segmentation</b> — include / exclude &amp; regex containers</div>
-          <div class="filt-row"><span class="tag-inc">Include</span></div>
-          <div class="filt-row"><span class="chip k" contenteditable="true">Page URL</span><span class="chip o" contenteditable="true">contains</span><span class="chip v" contenteditable="true">/pharmacy</span></div>
-          <div class="filt-row"><span class="chip k" contenteditable="true">Page URL</span><span class="chip o" contenteditable="true">glob match</span><span class="chip v" contenteditable="true">*/schedule/*</span></div>
-          <div class="filt-row" style="margin-top:8px;"><span class="tag-exc">Exclude</span></div>
-          <div class="filt-row"><span class="chip k" contenteditable="true">User type</span><span class="chip o" contenteditable="true">is</span><span class="chip v" contenteditable="true">internal</span></div>
-          <div class="filt-row" style="margin-top:8px;"><span class="chip d" contenteditable="true">Derived</span><span class="chip re" contenteditable="true">REGEXEXTRACT(url, "rx=([0-9]+)")</span></div>
-        </div>
+      <div class="viz">
+        <div class="viz-cap"><b>Segmentation</b> — include / exclude &amp; regex containers</div>
+        <div class="filt-row"><span class="tag-inc">Include</span></div>
+        <div class="filt-row"><span class="chip k" contenteditable="true">Page URL</span><span class="chip o" contenteditable="true">contains</span><span class="chip v" contenteditable="true">/pharmacy</span></div>
+        <div class="filt-row"><span class="chip k" contenteditable="true">Page URL</span><span class="chip o" contenteditable="true">glob match</span><span class="chip v" contenteditable="true">*/schedule/*</span></div>
+        <div class="filt-row" style="margin-top:8px;"><span class="tag-exc">Exclude</span></div>
+        <div class="filt-row"><span class="chip k" contenteditable="true">User type</span><span class="chip o" contenteditable="true">is</span><span class="chip v" contenteditable="true">internal</span></div>
+        <div class="filt-row" style="margin-top:8px;"><span class="chip d" contenteditable="true">Derived</span><span class="chip re" contenteditable="true">REGEXEXTRACT(url, "rx=([0-9]+)")</span></div>
       </div>
-
-      <!-- limits -->
-      <div>
-        <div class="eyebrow" contenteditable="true" data-key="eb3">Segment &amp; dimension limits</div>
-        <div class="tiles">
-        <div class="tile">
-          <div class="tile-num" contenteditable="true">2,000</div>
-          <div class="tile-label" contenteditable="true">event types / project</div>
-        </div>
-        <div class="tile">
-          <div class="tile-num" contenteditable="true">2,000</div>
-          <div class="tile-label" contenteditable="true">event properties / project</div>
-        </div>
-        <div class="tile">
-          <div class="tile-num" contenteditable="true">1,000</div>
-          <div class="tile-label" contenteditable="true">user properties / project</div>
-        </div>
-        <div class="tile">
-          <div class="tile-num" contenteditable="true">10</div>
-          <div class="tile-label" contenteditable="true">segments per chart (30 in breakdown)</div>
-        </div>
-        <div class="tile">
-          <div class="tile-num" contenteditable="true">5</div>
-          <div class="tile-label" contenteditable="true">group-bys per Data Table</div>
-        </div>
-        <div class="tile">
-          <div class="tile-num" contenteditable="true">100 / 500</div>
-          <div class="tile-label" contenteditable="true">single / double group-by display</div>
-        </div>
-        </div>
-        <p class="limit-note" contenteditable="true" data-key="limit-note">Unlike Adobe's fixed eVar / prop / success-event slots, these are <b>generous per-project ceilings</b> — not variables you pre-provision — and there's <b>no cap on properties per event</b>. Group-by results prune to top values for performance; Data Tables allow up to 5 top-level group-bys. Source: Amplitude <i>Limits &amp; quotas</i>.</p>
-      </div>
-
     </div>
   </div>
 
+  <!-- BETTER TOGETHER band + 3 columns -->
+  <div class="together">
+    <div class="together-title" contenteditable="true" data-key="together-title">Amplitude + CVS: your Adobe workflows, mapped</div>
+    <div class="features-grid">
+        <div class="feature">
+          <div class="feature-icon-wrap"><svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 6h20l-8 9v7l-4-2v-5L4 6z" stroke="#0052F2" stroke-width="1.7" stroke-linejoin="round" fill="none"/></svg></div>
+          <div class="feature-title" contenteditable="true">Segmentation, metrics &amp; containers</div>
+          <div class="feature-desc" contenteditable="true">Adobe <b>Segments → Cohorts</b> + Segmentation Module. <b>Calculated Metrics → Formula metrics</b> &amp; Derived Properties. Build include / exclude containers with <b>is</b>, <b>contains</b>, <b>glob</b> — and full <b>regex</b> (REGEXEXTRACT / REGEXREPLACE).</div>
+        </div>
+        <div class="feature">
+          <div class="feature-icon-wrap"><svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="4" width="7" height="7" rx="1.5" stroke="#0052F2" stroke-width="1.7"/><rect x="17" y="4" width="7" height="7" rx="1.5" stroke="#0052F2" stroke-width="1.7"/><rect x="4" y="17" width="7" height="7" rx="1.5" stroke="#0052F2" stroke-width="1.7"/><rect x="17" y="17" width="7" height="7" rx="1.5" stroke="#0052F2" stroke-width="1.7"/></svg></div>
+          <div class="feature-title" contenteditable="true">Your Adobe data model, mapped</div>
+          <div class="feature-desc" contenteditable="true"><b>eVars → User / Event Properties</b>, <b>props → Event Properties</b>, <b>success events → Events</b>. Custom conversion = a <b>Funnel</b> on any event — no success-event slots to pre-provision before you can report.</div>
+        </div>
+        <div class="feature">
+          <div class="feature-icon-wrap"><svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 24V4" stroke="#0052F2" stroke-width="1.7" stroke-linecap="round"/><path d="M4 24h20" stroke="#0052F2" stroke-width="1.7" stroke-linecap="round"/><path d="M7 18l5-5 4 3 7-8" stroke="#0052F2" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 8h3v3" stroke="#0052F2" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="feature-title" contenteditable="true">Traffic KPIs &amp; limits</div>
+          <div class="feature-desc" contenteditable="true"><b>Unique Visitors → Unique users</b>, <b>Visits → Sessions</b>, <b>Hits → Events</b>. No fixed slots — 2,000 event types, 2,000 event props, 1,000 user props; up to <b>10 segments</b> &amp; <b>5 group-bys</b> per Data Table.</div>
+        </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
   <div class="footer">
     <div class="footer-copy">© 2026 Amplitude Inc. Confidential · prepared for CVS</div>
     <div class="ae-block">
@@ -307,10 +207,10 @@ table.map tbody tr:last-child td { border-bottom:none; }
 </div>
 
 <script>
-const STORAGE_KEY = 'cvs-adobe-map-a4-edits';
+const STORAGE_KEY = 'cvs-better-together-edits';
 function collect(){ const d={}; document.querySelectorAll('[contenteditable]').forEach((el,i)=>{ const k=el.dataset.key||('n'+i); d[k]=el.innerHTML; });
   const a=document.getElementById('amp-logo-display').querySelector('img'); if(a && !a.src.startsWith('data:image/svg+xml;base64,PHN')) d['__amp']=a.src;
-  const c=document.getElementById('cvs-logo-display').querySelector('img'); if(c && c.src && c.src.length && !c.src.includes('CVS_Health')) d['__cvs']=c.src;
+  const c=document.getElementById('cvs-logo-display').querySelector('img'); if(c && !c.src.includes('CVS_Health')) d['__cvs']=c.src;
   return d; }
 function saveEdits(){ localStorage.setItem(STORAGE_KEY, JSON.stringify(collect())); const b=document.getElementById('save-status'); b.textContent='✓ Saved'; setTimeout(()=>b.textContent='💾 Save edits',1500); }
 function restore(){ let d; try{ d=JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}'); }catch(e){ return; }
