@@ -81,9 +81,11 @@ input[type=file] { display:none; }
 /* "Better Together" band + 3 columns (like template) */
 .together { background:#f4f6fb; border-top:1px solid var(--line); padding:34px 44px 32px; }
 .together-title { text-align:center; font-size:20px; font-weight:900; color:var(--ink); letter-spacing:-0.4px; margin-bottom:26px; }
-.trust { text-align:center; margin-top:28px; padding-top:22px; border-top:1px solid var(--line); }
-.trust-label { font-size:9.5px; font-weight:800; letter-spacing:1.6px; text-transform:uppercase; color:#9aa0b5; margin-bottom:10px; }
-.trust-names { font-size:13px; font-weight:800; color:#8a90a6; letter-spacing:0.3px; }
+.trust { margin-top:28px; padding-top:22px; border-top:1px solid var(--line); display:flex; align-items:center; justify-content:center; gap:40px; }
+.trust-item { display:flex; align-items:baseline; gap:9px; }
+.trust-num { font-size:22px; font-weight:900; color:var(--blue); letter-spacing:-0.5px; }
+.trust-cap { font-size:11.5px; color:var(--muted); font-weight:600; }
+.trust-sep { width:1px; height:30px; background:var(--line); }
 .features-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:34px; }
 .feature-icon-wrap { width:38px; height:38px; display:flex; align-items:center; justify-content:center; margin-bottom:14px; }
 .feature-icon-wrap svg { width:30px; height:30px; }
@@ -197,8 +199,9 @@ input[type=file] { display:none; }
         </div>
     </div>
     <div class="trust">
-      <div class="trust-label" contenteditable="true" data-key="trust-label">Trusted by healthcare &amp; retail leaders</div>
-      <div class="trust-names" contenteditable="true" data-key="trust-names">McKesson &nbsp;·&nbsp; Moderna &nbsp;·&nbsp; HEB &nbsp;·&nbsp; MyFitnessPal &nbsp;·&nbsp; Square</div>
+      <div class="trust-item"><span class="trust-num" contenteditable="true" data-key="trust-num1">4,900+</span><span class="trust-cap" contenteditable="true" data-key="trust-cap1">companies build on Amplitude</span></div>
+      <div class="trust-sep"></div>
+      <div class="trust-item"><span class="trust-num" contenteditable="true" data-key="trust-num2">26%</span><span class="trust-cap" contenteditable="true" data-key="trust-cap2">of the Fortune 100 use Amplitude</span></div>
     </div>
   </div>
 
