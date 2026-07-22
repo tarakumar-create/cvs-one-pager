@@ -32,8 +32,8 @@ input[type=file] { display:none; }
 .upload-overlay span { color:#fff; font-size:9px; font-weight:600; background:rgba(0,0,0,0.55); padding:2px 5px; border-radius:4px; white-space:nowrap; }
 .amp-logo-img { height:26px; width:auto; display:block; }
 .logo-divider { color:rgba(255,255,255,0.4); font-size:20px; font-weight:300; margin:0 13px; }
-.cvs-chip { background:#fff; border-radius:6px; padding:5px 9px; display:flex; align-items:center; }
-.cvs-logo-img { height:23px; width:auto; display:block; }
+.cvs-chip { background:#fff; border-radius:7px; padding:7px 12px; display:flex; align-items:center; box-shadow:0 1px 4px rgba(0,0,0,0.12); }
+.cvs-logo-img { height:22px; width:auto; display:block; }
 .header h1 { color:#fff; font-size:32px; font-weight:900; line-height:1.12; letter-spacing:-0.8px; max-width:600px; position:relative; z-index:3; }
 .header .sub { color:rgba(255,255,255,0.66); font-size:12.5px; line-height:1.55; max-width:530px; margin-top:11px; position:relative; z-index:3; }
 
@@ -49,6 +49,16 @@ input[type=file] { display:none; }
 .viz { background:#fff; border:1px solid var(--line); border-radius:9px; padding:14px 15px 16px; }
 .viz-cap { font-size:10.5px; font-weight:700; color:#6a7086; margin-bottom:11px; }
 .viz-cap b { color:var(--ink); }
+
+/* journey visual (illustrative, value-led) */
+.journey-card { border:1px solid var(--line); border-radius:12px; background:var(--wash); padding:28px 26px 24px; }
+.journey { display:flex; align-items:flex-start; justify-content:space-between; gap:4px; }
+.jnode { display:flex; flex-direction:column; align-items:center; gap:9px; flex:1 1 0; }
+.jicon { width:50px; height:50px; border-radius:50%; background:#fff; border:1px solid var(--line); display:flex; align-items:center; justify-content:center; box-shadow:0 2px 8px rgba(10,15,40,0.05); }
+.jicon svg { width:24px; height:24px; }
+.jlabel { font-size:12px; font-weight:700; color:var(--ink); text-align:center; line-height:1.25; }
+.jarrow { color:#c3c8da; font-size:18px; flex:0 0 auto; margin-top:16px; }
+.journey-cap { font-size:12.5px; color:var(--muted); line-height:1.65; text-align:center; max-width:660px; margin:22px auto 0; }
 .mtbl { width:100%; border-collapse:collapse; font-size:10px; }
 .mtbl th { text-align:left; color:#9198ad; font-weight:700; padding:3px 5px; border-bottom:1px solid #eef0f6; text-transform:uppercase; letter-spacing:.4px; font-size:8px; }
 .mtbl td { padding:4px 5px; border-bottom:1px solid #f4f5fa; color:#3a4058; }
@@ -139,58 +149,47 @@ input[type=file] { display:none; }
       </div>
     </div>
     <h1 contenteditable="true" data-key="headline">Analytics for the Whole<br>CVS Customer Journey</h1>
-    <p class="sub" contenteditable="true" data-key="sub">Amplitude gives CVS's analytics teams behavioral customer journeys, self-serve exploration, and the tools to act — all in one connected platform.</p>
+    <p class="sub" contenteditable="true" data-key="sub">Amplitude helps CVS understand the full customer journey, give every team self-serve answers, and turn insight into action — all in one connected platform.</p>
   </div>
 
   <!-- BODY: intro + central visual -->
   <div class="body">
-    <p class="lead" contenteditable="true" data-key="lead">Amplitude goes beyond page-level reporting to the full customer journey — and lets any CVS team act on what they find.</p>
-    <p class="para" contenteditable="true" data-key="para">That means following a member from web to app to pharmacy as one journey, building segments and metrics on the fly without provisioning variables, and moving straight from insight to experiments, replays, and campaigns — all in one place, without waiting on a BI ticket.</p>
+    <p class="lead" contenteditable="true" data-key="lead">Amplitude helps CVS understand the whole customer journey — and gives every team the power to act on it.</p>
+    <p class="para" contenteditable="true" data-key="para">Instead of isolated page and visit reports, CVS gets one connected view of each member across pharmacy, web, and app. Every team can answer its own questions in minutes, and turn those insights into experiments, personalization, and campaigns that lift refills, bookings, and loyalty.</p>
 
-    <div class="eyebrow" contenteditable="true" data-key="eb">What it looks like in Amplitude</div>
-    <div class="viz-block">
-      <div class="viz">
-        <div class="viz-cap"><b>Data Tables</b> — one CVS journey across pharmacy, web &amp; app</div>
-        <table class="mtbl">
-          <thead><tr><th>Segment</th><th>Unique users</th><th>Conversion</th></tr></thead>
-          <tbody>
-            <tr><td class="seg" contenteditable="true">Pharmacy app</td><td><span class="barbg"><span class="bar" style="width:44px"></span></span><span contenteditable="true">842K</span></td><td class="pct" contenteditable="true">31.4%</td></tr>
-            <tr><td class="seg" contenteditable="true">CVS.com web</td><td><span class="barbg"><span class="bar" style="width:32px"></span></span><span contenteditable="true">610K</span></td><td class="pct" contenteditable="true">24.1%</td></tr>
-            <tr><td class="seg" contenteditable="true">MinuteClinic</td><td><span class="barbg"><span class="bar" style="width:16px"></span></span><span contenteditable="true">218K</span></td><td class="pct" contenteditable="true">18.7%</td></tr>
-            <tr><td class="seg" contenteditable="true">ExtraCare</td><td><span class="barbg"><span class="bar" style="width:25px"></span></span><span contenteditable="true">402K</span></td><td class="pct" contenteditable="true">27.9%</td></tr>
-          </tbody>
-        </table>
+    <div class="eyebrow" contenteditable="true" data-key="eb">Illustrative example — one connected view of the CVS member</div>
+    <div class="journey-card">
+      <div class="journey">
+        <div class="jnode"><div class="jicon"><svg viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="#0052F2" stroke-width="1.7"/><path d="M16 16l5 5" stroke="#0052F2" stroke-width="1.7" stroke-linecap="round"/></svg></div><div class="jlabel" contenteditable="true">Web &amp; search</div></div>
+        <div class="jarrow">→</div>
+        <div class="jnode"><div class="jicon"><svg viewBox="0 0 24 24" fill="none"><rect x="7" y="2.5" width="10" height="19" rx="2.5" stroke="#0052F2" stroke-width="1.7"/><path d="M11 18.5h2" stroke="#0052F2" stroke-width="1.7" stroke-linecap="round"/></svg></div><div class="jlabel" contenteditable="true">CVS app</div></div>
+        <div class="jarrow">→</div>
+        <div class="jnode"><div class="jicon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 4v6M9 7h6" stroke="#0052F2" stroke-width="1.7" stroke-linecap="round"/><rect x="4.5" y="10" width="15" height="10" rx="2" stroke="#0052F2" stroke-width="1.7"/></svg></div><div class="jlabel" contenteditable="true">Pharmacy</div></div>
+        <div class="jarrow">→</div>
+        <div class="jnode"><div class="jicon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 20s-7-4.5-7-9.5A4 4 0 0112 8a4 4 0 017 2.5C19 15.5 12 20 12 20z" stroke="#0052F2" stroke-width="1.7" stroke-linejoin="round"/></svg></div><div class="jlabel" contenteditable="true">Refill &amp; ExtraCare</div></div>
       </div>
-      <div class="viz">
-        <div class="viz-cap"><b>Behavioral cohorts &amp; regex segments</b> — built in seconds, by anyone</div>
-        <div class="filt-row"><span class="tag-inc">Include</span></div>
-        <div class="filt-row"><span class="chip k" contenteditable="true">Page URL</span><span class="chip o" contenteditable="true">contains</span><span class="chip v" contenteditable="true">/pharmacy</span></div>
-        <div class="filt-row"><span class="chip k" contenteditable="true">Page URL</span><span class="chip o" contenteditable="true">glob match</span><span class="chip v" contenteditable="true">*/schedule/*</span></div>
-        <div class="filt-row" style="margin-top:8px;"><span class="tag-exc">Exclude</span></div>
-        <div class="filt-row"><span class="chip k" contenteditable="true">User type</span><span class="chip o" contenteditable="true">is</span><span class="chip v" contenteditable="true">internal</span></div>
-        <div class="filt-row" style="margin-top:8px;"><span class="chip d" contenteditable="true">Derived</span><span class="chip re" contenteditable="true">REGEXEXTRACT(url, "rx=([0-9]+)")</span></div>
-      </div>
+      <div class="journey-cap" contenteditable="true" data-key="journey-cap">Amplitude unifies every touchpoint into a single view of the member — so CVS sees the whole journey, not isolated page views, and can act on what drives refills, appointments, and loyalty.</div>
     </div>
   </div>
 
   <!-- BETTER TOGETHER band + 3 columns -->
   <div class="together">
-    <div class="together-title" contenteditable="true" data-key="together-title">Why CVS teams choose Amplitude</div>
+    <div class="together-title" contenteditable="true" data-key="together-title">The value CVS gets from Amplitude</div>
     <div class="features-grid">
         <div class="feature">
           <div class="feature-icon-wrap"><svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 6h20l-8 9v7l-4-2v-5L4 6z" stroke="#0052F2" stroke-width="1.7" stroke-linejoin="round" fill="none"/></svg></div>
-          <div class="feature-title" contenteditable="true">See the whole customer journey</div>
-          <div class="feature-desc" contenteditable="true">Amplitude is built around <b>people, not just pages</b> — follow a member's journey across pharmacy, web, and app, build a <b>funnel or path on any action</b>, and group users by what they actually did with <b>behavioral cohorts</b>.</div>
+          <div class="feature-title" contenteditable="true">See the full customer journey</div>
+          <div class="feature-desc" contenteditable="true">Follow members across pharmacy, web, and app as <b>one connected journey</b> — so CVS sees where experiences work, where customers drop off, and what to improve.</div>
         </div>
         <div class="feature">
           <div class="feature-icon-wrap"><svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14 2v5M14 21v5M2 14h5M21 14h5M6 6l3 3M22 22l-3-3M22 6l-3 3M6 22l3-3" stroke="#0052F2" stroke-width="1.7" stroke-linecap="round"/><circle cx="14" cy="14" r="4.5" stroke="#0052F2" stroke-width="1.7"/></svg></div>
-          <div class="feature-title" contenteditable="true">Answers without the setup</div>
-          <div class="feature-desc" contenteditable="true">No variables to provision before you can report. <b>Capture properties dynamically</b>, spin up <b>calculated metrics</b> and <b>regex-based segments</b> on the fly, and analyze data you already collected — <b>retroactively</b> — so the team explores instead of filing tickets.</div>
+          <div class="feature-title" contenteditable="true">Answers for every team, fast</div>
+          <div class="feature-desc" contenteditable="true">Marketing, product, and analytics get <b>self-serve answers in minutes</b> — no BI ticket, no new tagging request — so decisions happen sooner across the business.</div>
         </div>
         <div class="feature">
           <div class="feature-icon-wrap"><svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="4" width="22" height="15" rx="2.5" stroke="#0052F2" stroke-width="1.7"/><path d="M11 9l5 3-5 3V9z" fill="#0052F2"/><path d="M9 24h10" stroke="#0052F2" stroke-width="1.7" stroke-linecap="round"/></svg></div>
-          <div class="feature-title" contenteditable="true">Analyze and act in one platform</div>
-          <div class="feature-desc" contenteditable="true">Go beyond reporting with <b>Session Replay</b>, <b>Experimentation</b>, <b>Guides &amp; Surveys</b>, and <b>AI agents</b> — so CVS teams don't just measure the customer journey, they improve it, without stitching separate tools together.</div>
+          <div class="feature-title" contenteditable="true">Turn insight into action</div>
+          <div class="feature-desc" contenteditable="true">Go beyond dashboards to <b>test, personalize, and improve</b> the experiences that drive refills, bookings, and loyalty — then measure the impact, all in one platform.</div>
         </div>
     </div>
   </div>
